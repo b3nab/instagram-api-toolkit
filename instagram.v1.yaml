@@ -1,0 +1,141 @@
+openapi: 3.0.1
+info:
+  title: Instagram API
+  description: The Instagram Private API in OpenAPI specs.v3.0
+  version: 0.0.1
+servers:
+- url: https://api.instagram.com/v1
+paths:
+  /users/self:
+    get:
+      tags:
+      - User
+      summary: User Profile
+      description: The User Profile endpoint returns information about the Instagram user
+        that has authorized with the application.
+      responses:
+        200:
+          description: Profile information for a user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /history:
+    get:
+      tags:
+      - User
+      summary: User Activity
+      description: The User Activity endpoint returns data about a user's lifetime
+        activity with Instagram. The response will include pickup locations and times,
+        dropoff locations and times, the distance of past requests, and information
+        about which products were requested.<br><br>The history array in the response
+        will have a maximum length based on the limit parameter. The response value
+        count may exceed limit, therefore subsequent API requests may be necessary.
+      parameters:
+      - name: offset
+        in: query
+        description: Offset the list of returned results by this amount. Default is
+          zero.
+        schema:
+          type: integer
+          format: int32
+      - name: limit
+        in: query
+        description: Number of items to retrieve. Default is 5, maximum is 100.
+        schema:
+          type: integer
+          format: int32
+      responses:
+        200:
+          description: History information for the given user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Activities'
+        default:
+          description: Unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Activities:
+      type: object
+      properties:
+        offset:
+          type: integer
+          description: Position in pagination.
+          format: int32
+        limit:
+          type: integer
+          description: Number of items to retrieve (100 max).
+          format: int32
+        count:
+          type: integer
+          description: Total number of items available.
+          format: int32
+        history:
+          type: array
+          items:
+            $ref: '#/components/schemas/Activity'
+    Product:
+      type: object
+      properties:
+        product_id:
+          type: string
+          description: Unique identifier representing a specific product for a given
+            latitude & longitude. For example, uberX in San Francisco will have a
+            different product_id than uberX in Los Angeles.
+        description:
+          type: string
+          description: Description of product.
+        display_name:
+          type: string
+          description: Display name of product.
+        capacity:
+          type: string
+          description: Capacity of product. For example, 4 people.
+        image:
+          type: string
+          description: Image URL representing the product.
+    Activity:
+      type: object
+      properties:
+        uuid:
+          type: string
+          description: Unique identifier for the activity
+    Error:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        fields:
+          type: string
+    User:
+      type: object
+      properties:
+        first_name:
+          type: string
+          description: First name of the Instagram user.
+        last_name:
+          type: string
+          description: Last name of the Instagram user.
+        email:
+          type: string
+          description: Email address of the Instagram user
+        picture:
+          type: string
+          description: Image URL of the Instagram user.
+        promo_code:
+          type: string
+          description: Promo code of the Instagram user.
