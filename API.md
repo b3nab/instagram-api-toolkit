@@ -5,56 +5,56 @@
     /upload/video:
 
 ### Configure Media Endpoints ###
-  /media/configure:
-    caption:
-      type: string
-      description: Configure media caption
+    /media/configure:
+      caption:
+        type: string
+        description: Configure media caption
   
-  /media/configure_to_story:
-  /media/configure_sidecar:
-  /history:
-    get:
-      tags:
-      - User
-      summary: User Activity
-      description: The User Activity endpoint returns data about a user's lifetime
-        activity with Instagram. The response will include pickup locations and times,
-        dropoff locations and times, the distance of past requests, and information
-        about which products were requested.<br><br>The history array in the response
-        will have a maximum length based on the limit parameter. The response value
-        count may exceed limit, therefore subsequent API requests may be necessary.
-      parameters:
-      - name: offset
-        in: query
-        description: Offset the list of returned results by this amount. Default is
-          zero.
-        schema:
-          type: integer
-          format: int32
-      - name: limit
-        in: query
-        description: Number of items to retrieve. Default is 5, maximum is 100.
-        schema:
-          type: integer
-          format: int32
-      responses:
-        200:
-          description: History information for the given user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Activities'
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
+    /media/configure_to_story:
+    /media/configure_sidecar:
+    /history:
+      get:
+        tags:
+        - User
+        summary: User Activity
+        description: The User Activity endpoint returns data about a user's lifetime
+          activity with Instagram. The response will include pickup locations and times,
+          dropoff locations and times, the distance of past requests, and information
+          about which products were requested.<br><br>The history array in the response
+          will have a maximum length based on the limit parameter. The response value
+          count may exceed limit, therefore subsequent API requests may be necessary.
+        parameters:
+        - name: offset
+          in: query
+          description: Offset the list of returned results by this amount. Default is
+            zero.
+          schema:
+            type: integer
+            format: int32
+        - name: limit
+          in: query
+          description: Number of items to retrieve. Default is 5, maximum is 100.
+          schema:
+            type: integer
+            format: int32
+        responses:
+          200:
+            description: History information for the given user
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Activities'
+          default:
+            description: Unexpected error
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Error'
 
 
 ### account Endpoints ###
-  /accounts/
-    accounts/change_profile_picture/
+    /accounts/
+      accounts/change_profile_picture/
 
 ### collections ###
     feed/collection/{collection_id!s}/
