@@ -1,6 +1,6 @@
 # API Endpoints
 
-  ### Upload/configure Media Endpoints ###
+### Upload/configure Media Endpoints ###
     /upload/photo:
     /upload/video:
 
@@ -53,8 +53,37 @@
 
 
 ### account Endpoints ###
-    /accounts/
-      accounts/change_profile_picture/
+    accounts:
+      login:
+          device_id': self.device_id,
+          guid': self.uuid,
+          adid': self.ad_id,
+          phone_id': self.phone_id,
+          _csrftoken': self.csrftoken,
+          username': self.username,
+          password': self.password,
+          login_attempt_count': '0',
+      edit_profile:
+          username': self.authenticated_user_name,
+          gender': int(gender),
+          phone_number': phone_number or '',
+          first_name': first_name or '',
+          biography': biography or '',
+          external_url': external_url or '',
+          email': email,
+      change_profile_picture:
+          photo_data: string of image
+      remove_profile_picture:
+      current_user:
+      set_private:
+      set_public:
+      logout:
+        phone_id': self.phone_id,
+        _csrftoken': self.csrftoken,
+        guid': self.uuid,
+        device_id': self.device_id,
+        _uuid': self.uuid
+
 
 ### collections ###
     feed/collection/{collection_id!s}/
