@@ -7,6 +7,9 @@
   "author": "Benedetto Abbenanti <b3nab@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
+  "scripts": {
+    "generate": "./tools/auto_generate_sdks.sh"
+  },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^0.0.9-4.0.0-beta3",
     "openapi-viewer": "^1.0.1"
