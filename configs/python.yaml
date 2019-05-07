@@ -1,0 +1,25 @@
+# CONFIG OPTIONS
+
+# python package name (convention: snake_case). (Default: openapi_client)
+packageName: private_instagram_sdk
+
+# python project name in setup.py (e.g. petstore-api).
+projectName: private-instagram-sdk
+
+# python package version. (Default: 1.0.0)
+packageVersion: 1.0.0
+
+# python package URL.
+packageUrl: https://github.com/instagrambot/instagram-api-toolkit
+
+# Sort method arguments to place required parameters before optional parameters. (Default: true)
+# sortParamsByRequiredFlag:
+
+# Hides the generation timestamp when files are generated. (Default: true)
+# hideGenerationTimestamp:
+
+# Specifies that only a library source code is to be generated. (Default: false)
+# generateSourceCodeOnly:
+
+# library template (sub-template) to use: asyncio, tornado, urllib3 (Default: urllib3)
+# library:
