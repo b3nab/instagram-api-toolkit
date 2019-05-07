@@ -1,11 +1,83 @@
 openapi: 3.0.1
+################################################################################
+#                              API Information                                 #
+################################################################################
 info:
   title: Instagram API
   description: The Instagram Private API in OpenAPI specs.v3.0
   version: 0.0.1
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
 servers:
-- url: https://api.instagram.com/v1
+- url: https://i.instagram.com/api/v1
+################################################################################
+#                              Paths (Endpoints)                               #
+################################################################################
 paths:
+  /login:
+    username:
+      type: string
+      description: Username of Instagram user
+    full_name:
+      type: string
+      description: Fullname of Instagram user
+    is_private:
+      type: Bol
+      description: Is Instagram set to private or not
+    profile_pic_url:
+      type: string
+      description: Url to Instagram profile pic
+    profile_pic_id:
+      type: string
+      description: Id of Instagram profile picture
+    is_verified:
+      type: bol
+      description: Is Instagram user verified
+    has_anonymous_profile_picture:
+      type: bol
+      description: Is profile picture of Instagram hidden.
+    can_boost_post:
+      type: bol
+      description: Can Instagram user boost posts
+    is_business: 
+      type: bol
+      description: Is instagram user a business
+    account_type:
+      type: bol
+      description: What type is Instagram users account.
+    is_call_to_action_enabled:
+      type: bol
+      description: 
+    can_see_organic_insights:
+      type: bol
+      description: Can Instagram user see organic insights
+    show_insights_terms:
+      type: bol
+      description:
+    total_igtv_videos:
+      type: int
+      description: How many igtv videos Instagram user has
+    reel_auto_archive:
+      type: 
+      description:
+    has_placed_orders:
+      type: bol
+      description: Has Instagram user placed orders like advertising.
+    allowed_commenter_type:
+      type: object
+      description: What type of does Instagram user allow.
+    nametag:
+      mode:
+        gradient:
+          type: int
+          description:
+        allow_contacts_sync:
+          type: bol
+          description: Has Instagram user allowed contact sync.
+        phone_number:
+          type: string
+          description: Instagram
   /users/self:
     get:
       tags:
@@ -26,6 +98,23 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /igtv:
+    channel:
+    tv_guide:
+    search:
+
+  ### Upload/configure Media Endpoints ###
+    /upload/photo:
+    /upload/video:
+
+### Configure Media Endpoints ###
+  /media/configure:
+    caption:
+      type: string
+      description: Configure media caption
+  
+  /media/configure_to_story:
+  /media/configure_sidecar:
   /history:
     get:
       tags:
@@ -64,6 +153,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
 components:
   schemas:
     Activities:
