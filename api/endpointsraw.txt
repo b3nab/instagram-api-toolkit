@@ -274,7 +274,7 @@ news/inbox/
 news/log/
 
 notifications/badge/
-uush/register/
+users/register/
 
 feed/user/{0}/shoppable_media/
 
