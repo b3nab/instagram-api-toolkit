@@ -95,39 +95,6 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
         device_id': self.device_id,
         _uuid': self.uuid
 
-### account Endpoints
-
-    accounts:
-      login:
-          device_id': self.device_id,
-          guid': self.uuid,
-          adid': self.ad_id,
-          phone_id': self.phone_id,
-          _csrftoken': self.csrftoken,
-          username': self.username,
-          password': self.password,
-          login_attempt_count': '0',
-      edit_profile:
-          username': self.authenticated_user_name,
-          gender': int(gender),
-          phone_number': phone_number or '',
-          first_name': first_name or '',
-          biography': biography or '',
-          external_url': external_url or '',
-          email': email,
-      change_profile_picture:
-          photo_data: string of image
-      remove_profile_picture:
-      current_user:
-      set_private:
-      set_public:
-      logout:
-        phone_id': self.phone_id,
-        _csrftoken': self.csrftoken,
-        guid': self.uuid,
-        device_id': self.device_id,
-        _uuid': self.uuid
-
 ### collections
 
     feed/collection/{collection_id!s}/
@@ -181,7 +148,7 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
     friendships/ignore/{user_id!s}/
     friendships/remove_follower/{user_id!s}/
 
- ### For endpoints in ``/highlights/`` or related to the highlights feature.
+### For endpoints in ``/highlights/`` or related to the highlights feature
 
     /highlights/
     highlights/{user_id!s}/highlights_tray/
@@ -189,13 +156,13 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
     highlights/{highlight_id!s}/edit_reel/
     highlights/{highlight_id!s}/delete_reel/
 
-### For endpoints in ``/igtv/``.
+### For endpoints in ``/igtv/``
 
     igtv/channel/
     igtv/tv_guide/
     igtv/search/
 
-### For endpoints in ``/live/``.
+### For endpoints in ``/live/``
 
     live/{broadcast_id!s}/like/
     live/{broadcast_id!s}/get_like_count/
@@ -207,14 +174,14 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
     live/{broadcast_id!s}/get_post_live_comments/
     live/{broadcast_id!s}/get_post_live_likes/
 
-### For endpoints related to location functionality.
+### For endpoints related to location functionality
 
     locations/{location_id!s}/info/
     locations/{location_id!s}/related/
     locations/{location_id!s}/sections/
     locations/{location_id!s}/sections/
 
-### For endpoints in ``/media/``.
+### For endpoints in ``/media/``
 
     media/{media_id!s}/info/
     media/{media_id!s}/infos/
@@ -242,7 +209,7 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
     media/{media_id!s}/{only_me!s}/
     media/{story_pk!s}/list_reel_media_viewer/
 
-### For miscellaneous functions.
+### For miscellaneous functions
 
     qe/expose/
     direct_v2/ranked_recipients/
@@ -252,7 +219,7 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
     oembed/
     language/bulk_translate/
     fbsearch/topsearch/
-    
+
 ### For endpoints in ``/tags/``
 
     tags/{tag!s}/info/
@@ -262,13 +229,13 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
     tags/follow/{hashtag!s}/
     tags/unfollow/{hashtag!s}/
     tags/{tag!s}/sections/
-    
-### For endpoints relating to upload functionality.
+
+### For endpoints relating to upload functionality
 
      upload/video/
      upload/photo/
-    
-### For endpoints in ``/users/``.
+
+### For endpoints in ``/users/``
 
     users/self
     users/{user_id!s}/info/
@@ -280,7 +247,7 @@ par1, par2, test``` | Description for this endpoint explaining the action it doe
     users/reel_settings/
     users/set_reel_settings/
 
-###  For endpoints in ``/usertags/``.
+### For endpoints in ``/usertags/``
 
     usertags/{user_id!s}/feed/
     usertags/{media_id!s}/remove/
