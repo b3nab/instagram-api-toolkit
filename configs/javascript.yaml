@@ -1,0 +1,61 @@
+
+# Sort method arguments to place required parameters before optional parameters. (Default: true)
+# sortParamsByRequiredFlag:
+
+# Whether to ensure parameter names are unique in an operation (rename parameters that are not). (Default: true)
+# ensureUniqueParams:
+
+# boolean, toggles whether unicode identifiers are allowed in names or not, default is false (Default: false)
+# allowUnicodeIdentifiers:
+
+# Add form or body parameters to the beginning of the parameter list. (Default: false)
+# prependFormOrBodyParameters:
+
+# source folder for generated code (Default: src)
+# sourceFolder:
+
+# root package for generated code
+# invokerPackage:
+
+# package for generated api classes
+# apiPackage:
+
+# package for generated models
+# modelPackage:
+
+# name of the project (Default: generated from info.title or "openapi-js-client")
+# projectName:
+
+# module name for AMD, Node or globals (Default: generated from <projectName>)
+# moduleName:
+
+# description of the project (Default: using info.description or "Client library of <projectName>")
+# projectDescription:
+
+# version of the project (Default: using info.version or "1.0.0")
+# projectVersion:
+
+# name of the license the project uses (Default: using info.license.name)
+# licenseName:
+
+# use Promises as return values from the client API, instead of superagent callbacks (Default: false)
+# usePromises:
+
+# generate getters and setters for model properties (Default: false)
+# emitModelMethods:
+
+# generate JSDoc comments (Default: true)
+# emitJSDoc:
+
+# use JavaScript prototype chains & delegation for inheritance (Default: true)
+# useInheritance:
+
+# Hides the generation timestamp when files are generated. (Default: true)
+# hideGenerationTimestamp:
+
+# use JavaScript ES6 (ECMAScript 6) (beta). Default is ES6. (Default: true)
+# useES6:
+
+# Naming convention for the property: 'camelCase', 'PascalCase', 'snake_case' and 'original', which keeps the original name (Default: camelCase)
+# modelPropertyNaming:
+
