@@ -39,11 +39,9 @@ accounts/get_blocked_commenters/
 accounts/set_blocked_commenters/
 
 business/instant_experience/get_ix_partners_bundle/?signed_body={0}&ig_sig_key_version={1}
-
 business/account/set_business_category/
 business/instant_experience/ix_validate_url/
 business/branded_content/get_whitelist_settings/
-bsers/search/?q={0}&count={1}&branded_content_creator_only=true
 business/branded_content/update_whitelist_settings/
 business_conversion/get_business_convert_social_context/
 
@@ -57,49 +55,6 @@ collections/list/
 consent/new_user_flow/
 consent/new_user_flow_begins/
 
-direct_v2/threads/broadcast/configure_video/
-direct_v2/threads/broadcast/link/
-direct_v2/threads/broadcast/like/
-direct_v2/threads/broadcast/location/
-direct_v2/threads/broadcast/media_share/?media_type={0}
-direct_v2/threads/broadcast/profile/
-direct_v2/threads/broadcast/reaction/
-direct_v2/threads/broadcast/reel_share/
-direct_v2/threads/broadcast/upload_photo/
-direct_v2/threads/broadcast/hashtag/
-direct_v2/threads/broadcast/live_viewer_invite/
-
-direct_v2/create_group_thread/
-
-direct_v2/get_presence/
-direct_share/inbox/
-direct_v2/threads/{0}/label/
-direct_v2/threads/{0}/hide/
-direct_v2/threads/{0}/add_user/
-
-direct_v2/visual_threads/{0}/item_seen/
-direct_v2/threads/{0}/items/{1}/seen/
-direct_v2/threads/{0}/leave/
-direct_v2/threads/{0}/mute/
-direct_v2/threads/{0}/unmute/
-direct_v2/threads/{0}/update_title/
-direct_v2/threads/{0}/unlabel/
-direct_v2/inbox/
-direct_v2/pending_inbox/
-direct_v2/threads/broadcast/profile/
-direct_v2/threads/broadcast/text/
-direct_v2/threads/{0}
-direct_v2/threads/{0}/approve/
-direct_v2/threads/approve_multiple/
-direct_v2/threads/{0}/decline/
-direct_v2/threads/decline_multiple/
-direct_v2/threads/decline_all/
-direct_v2/threads/get_by_participants/?recipient_users=[{0}]
-direct_v2/ranked_recipients/?mode=raven&show_threads=true&query={0}&use_unified_inbox=true
-direct_v2/ranked_recipients
-direct_share/recent_recipients/
-direct_v2/threads/broadcast/story_share/?media_type={0}
-direct_v2/threads/{0}/items/{1}/delete/
 
 discover/ayml/
 discover/chaining/?target_id={0}
@@ -274,7 +229,7 @@ news/inbox/
 news/log/
 
 notifications/badge/
-users/register/
+uush/register/
 
 feed/user/{0}/shoppable_media/
 
@@ -335,3 +290,48 @@ former_usernames
 former_full_names
 former_bio_texts
 former_links_in_bio
+
+### API V2 Endpoints ###
+direct_v2/threads/broadcast/configure_video/
+direct_v2/threads/broadcast/link/
+direct_v2/threads/broadcast/like/
+direct_v2/threads/broadcast/location/
+direct_v2/threads/broadcast/media_share/?media_type={0}
+direct_v2/threads/broadcast/profile/
+direct_v2/threads/broadcast/reaction/
+direct_v2/threads/broadcast/reel_share/
+direct_v2/threads/broadcast/upload_photo/
+direct_v2/threads/broadcast/hashtag/
+direct_v2/threads/broadcast/live_viewer_invite/
+
+direct_v2/create_group_thread/
+
+direct_v2/get_presence/
+direct_share/inbox/
+direct_v2/threads/{0}/label/
+direct_v2/threads/{0}/hide/
+direct_v2/threads/{0}/add_user/
+
+direct_v2/visual_threads/{0}/item_seen/
+direct_v2/threads/{0}/items/{1}/seen/
+direct_v2/threads/{0}/leave/
+direct_v2/threads/{0}/mute/
+direct_v2/threads/{0}/unmute/
+direct_v2/threads/{0}/update_title/
+direct_v2/threads/{0}/unlabel/
+direct_v2/inbox/
+direct_v2/pending_inbox/
+direct_v2/threads/broadcast/profile/
+direct_v2/threads/broadcast/text/
+direct_v2/threads/{0}
+direct_v2/threads/{0}/approve/
+direct_v2/threads/approve_multiple/
+direct_v2/threads/{0}/decline/
+direct_v2/threads/decline_multiple/
+direct_v2/threads/decline_all/
+direct_v2/threads/get_by_participants/?recipient_users=[{0}]
+direct_v2/ranked_recipients/?mode=raven&show_threads=true&query={0}&use_unified_inbox=true
+direct_v2/ranked_recipients
+direct_share/recent_recipients/
+direct_v2/threads/broadcast/story_share/?media_type={0}
+direct_v2/threads/{0}/items/{1}/delete/
