@@ -4,126 +4,78 @@
 
 This is an example of a table of endpoints, use this as a reference.
 
-| METHOD | endpoint | parameters | description |
+| METHOD | Endpoint | Parameters | Description |
 | ------ | -------- | ---------- | --- |
 | **GET** | /path/to | par1, par2, test | Description for this endpoint explaining the action it does |
 
+  >
+    Following there are all endpoints with method and parameters.
+    The tables will explain for itself, just read the description to understand what is the endpoint's action it does.
+
 ### Upload/configure Media Endpoints
 
-    /upload/photo:
-    /upload/video:
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **POST** | /upload/photo |  |  |
+| **POST** | /upload/video |  |  |
 
 ### Configure Media Endpoints
 
-    /media/configure:
-      caption:
-        type: string
-        description: Configure media caption
-  
-    /media/configure_to_story:
-    /media/configure_sidecar:
-    /history:
-      get:
-        tags:
-        - User
-        summary: User Activity
-        description: The User Activity endpoint returns data about a user's lifetime
-          activity with Instagram. The response will include pickup locations and times,
-          dropoff locations and times, the distance of past requests, and information
-          about which products were requested.<br><br>The history array in the response
-          will have a maximum length based on the limit parameter. The response value
-          count may exceed limit, therefore subsequent API requests may be necessary.
-        parameters:
-        - name: offset
-          in: query
-          description: Offset the list of returned results by this amount. Default is
-            zero.
-          schema:
-            type: integer
-            format: int32
-        - name: limit
-          in: query
-          description: Number of items to retrieve. Default is 5, maximum is 100.
-          schema:
-            type: integer
-            format: int32
-        responses:
-          200:
-            description: History information for the given user
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Activities'
-          default:
-            description: Unexpected error
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Error'
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **POST** | /media/configure | caption:string, |  |
+| **POST** | /media/configure_to_story |  |  |
+| **POST** | /media/configure_sidecar |  |  |
 
 ### account Endpoints
 
-    accounts:
-      login:
-          device_id': self.device_id,
-          guid': self.uuid,
-          adid': self.ad_id,
-          phone_id': self.phone_id,
-          _csrftoken': self.csrftoken,
-          username': self.username,
-          password': self.password,
-          login_attempt_count': '0',
-      edit_profile:
-          username': self.authenticated_user_name,
-          gender': int(gender),
-          phone_number': phone_number or '',
-          first_name': first_name or '',
-          biography': biography or '',
-          external_url': external_url or '',
-          email': email,
-      change_profile_picture:
-          photo_data: string of image
-      remove_profile_picture:
-      current_user:
-      set_private:
-      set_public:
-      logout:
-        phone_id': self.phone_id,
-        _csrftoken': self.csrftoken,
-        guid': self.uuid,
-        device_id': self.device_id,
-        _uuid': self.uuid
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /accounts/login | device_id': self.device_id,guid': self.uuid,adid': self.ad_id,phone_id': self.phone_id,_csrftoken': self.csrftoken,username': self.username,password': self.password,login_attempt_count': '0', |  |
+| **POST** | /accounts/edit_profile | username': self.authenticated_user_name,gender': int(gender),phone_number': phone_number or '',first_name': first_name or '',biography': biography or '',external_url': external_url or '',email': email, |  |
+| **POST** | /accounts/change_profile_picture | photo_data: string of image |  |
+| **POST** | /accounts/remove_profile_picture |  |  |
+| **POST** | /accounts/current_user |  |  |
+| **POST** | /accounts/set_private |  |  |
+| **POST** | /accounts/set_public |  |  |
+| **POST** | /accounts/logout | phone_id': self.phone_id,_csrftoken': self.csrftoken,guid': self.uuid,device_id': self.device_id,_uuid': self.uuid |  |
 
 ### collections
 
-    feed/collection/{collection_id!s}/
-    collections/{collection_id!s}/edit/
-    collections/{collection_id!s}/delete/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /feed/collection/{collection-id!s}/ |  |  |
+| **GET** | /collections/{collection-id!s}/edit |  |  |
+| **GET** | /collections/{collection-id!s}/delete |  |  |
 
 ### Discover Endpoints
 
-    /discover/
-    discover/channels_home/
-    discover/chaining/
-    discover/top_live/
-    discover/top_live_status/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /discover |  |  |
+| **GET** | /discover/channels_home |  |  |
+| **GET** | /discover/chaining |  |  |
+| **GET** | /discover/top_live |  |  |
+| **GET** | /discover/top_live_status |  |  |
 
 ### Feed Endpoints
 
-    /feed/
-    feed/liked/
-    feed/timeline/
-    feed/popular/
-    feed/user/{user_id!s}/
-    feed/user/{user_name!s}/username/
-    feed/reels_tray/
-    feed/user/{user_id!s}/reel_media/
-    feed/reels_media/
-    feed/tag/{tag!s}/
-    feed/user/{user_id!s}/story/
-    feed/location/{location_id!s}/
-    feed/saved/
-    feed/only_me_feed/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /feed |  |  |
+| **GET** | /feed/liked |  |  |
+| **GET** | /feed/saved |  |  |
+| **GET** | /feed/only_me_feed |  |  |
+| **GET** | /feed/timeline |  |  |
+| **GET** | /feed/popular |  |  |
+| **GET** | /feed/reels_tray |  |  |
+| **GET** | /feed/reels_media |  |  |
+| **GET** | /feed/tag/{tag!s} |  |  |
+| **GET** | /feed/location/{location-id!s} |  |  |
+| **GET** | /feed/user/{user-id!s} |  |  |
+| **GET** | /feed/user/{user-name!s}/username |  |  |
+| **GET** | /feed/user/{user-id!s}/reel_media |  |  |
+| **GET** | /feed/user/{user-id!s}/story |  |  |
 
 ### Friendships endpoints
 
