@@ -8,6 +8,7 @@
   "license": "MIT",
   "private": true,
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^0.0.9-4.0.0-beta3"
+    "@openapitools/openapi-generator-cli": "^0.0.9-4.0.0-beta3",
+    "openapi-viewer": "^1.0.1"
   }
 }
