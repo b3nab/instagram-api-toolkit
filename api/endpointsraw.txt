@@ -294,7 +294,6 @@ former_links_in_bio
 direct_share/recent_recipients/
 direct_share/inbox/
 
-### API V2 Endpoints ###
 direct_v2/threads/broadcast/configure_video/
 direct_v2/threads/broadcast/link/
 direct_v2/threads/broadcast/like/
