@@ -23,7 +23,7 @@ paths:
       type: string
       description: Fullname of Instagram user
     is_private:
-      type: Bol
+      type: bol
       description: Is Instagram set to private or not
     profile_pic_url:
       type: string
