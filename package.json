@@ -1,0 +1,13 @@
+{
+  "name": "instagram-api-toolkit",
+  "version": "0.0.1",
+  "description": "toolkit to create multiple SDKs of Instagram Private API for whatever languages and frameworks",
+  "main": "index.js",
+  "repository": "https://github.com/instagrambot/instagram-api-toolkit.git",
+  "author": "Benedetto Abbenanti <b3nab@users.noreply.github.com>",
+  "license": "MIT",
+  "private": true,
+  "devDependencies": {
+    "@openapitools/openapi-generator-cli": "^0.0.9-4.0.0-beta3"
+  }
+}
