@@ -79,126 +79,140 @@ This is an example of a table of endpoints, use this as a reference.
 
 ### Friendships endpoints
 
-    /friendships/
-    friendships/autocomplete_user_list
-    friendships/{user_id!s}/following/
-    friendships/{user_id!s}/following/
-    friendships/pending/
-    friendships/show/{user_id!s}/
-    friendships/show_many/
-    friendships/create/{user_id!s}/
-    friendships/destroy/{user_id!s}/
-    friendships/block/{user_id!s}/
-    friendships/unblock/{user_id!s}/
-    friendships/block_friend_reel/{user_id!s}/
-    friendships/unblock_friend_reel/{user_id!s}/
-    friendships/set_reel_block_status/
-    friendships/blocked_reels/
-    friendships/favorite/{user_id!s}/
-    friendships/unfavorite/{user_id!s}/
-    friendships/ignore/{user_id!s}/
-    friendships/remove_follower/{user_id!s}/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /friendships |  |  |
+| **GET** | /friendships/autocomplete_user_list |  |  |
+| **GET** | /friendships/{user-id}/following |  |  |
+| **GET** | /friendships/{user-id}/following |  |  |
+| **GET** | /friendships/pending |  |  |
+| **GET** | /friendships/show/{user-id} |  |  |
+| **GET** | /friendships/show_many |  |  |
+| **GET** | /friendships/create/{user-id} |  |  |
+| **GET** | /friendships/destroy/{user-id} |  |  |
+| **GET** | /friendships/block/{user-id} |  |  |
+| **GET** | /friendships/unblock/{user-id} |  |  |
+| **GET** | /friendships/block_friend_reel/{user-id} |  |  |
+| **GET** | /friendships/unblock_friend_reel/{user-id} |  |  |
+| **GET** | /friendships/set_reel_block_status |  |  |
+| **GET** | /friendships/blocked_reels |  |  |
+| **GET** | /friendships/favorite/{user-id} |  |  |
+| **GET** | /friendships/unfavorite/{user-id} |  |  |
+| **GET** | /friendships/ignore/{user-id} |  |  |
+| **GET** | /friendships/remove_follower/{user-id} |  |  |
 
 ### For endpoints in ``/highlights/`` or related to the highlights feature
 
-    /highlights/
-    highlights/{user_id!s}/highlights_tray/
-    highlights/create_reel/
-    highlights/{highlight_id!s}/edit_reel/
-    highlights/{highlight_id!s}/delete_reel/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /highlights |  |  |
+| **GET** | /highlights/create_reel |  |  |
+| **GET** | /highlights/{user-id}/highlights_tray |  |  |
+| **GET** | /highlights/{highlight-id}/edit_reel |  |  |
+| **GET** | /highlights/{highlight-id}/delete_reel |  |  |
 
 ### For endpoints in ``/igtv/``
 
-    igtv/channel/
-    igtv/tv_guide/
-    igtv/search/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /igtv/channel |  |  |
+| **GET** | /igtv/search |  |  |
+| **GET** | /igtv/tv_guide |  |  |
 
 ### For endpoints in ``/live/``
 
-    live/{broadcast_id!s}/like/
-    live/{broadcast_id!s}/get_like_count/
-    live/{broadcast_id!s}/get_comment/
-    live/{broadcast_id!s}/heartbeat_and_get_viewer_count/
-    live/{broadcast_id!s}/comment/
-    live/{broadcast_id!s}/info/
-    live/get_suggested_broadcasts/
-    live/{broadcast_id!s}/get_post_live_comments/
-    live/{broadcast_id!s}/get_post_live_likes/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /live/get_suggested_broadcasts |  |  |
+| **GET** | /live/{broadcast-id}/info |  |  |
+| **GET** | /live/{broadcast-id}/like |  |  |
+| **GET** | /live/{broadcast-id}/comment |  |  |
+| **GET** | /live/{broadcast-id}/get_comment |  |  |
+| **GET** | /live/{broadcast-id}/get_like_count |  |  |
+| **GET** | /live/{broadcast-id}/get_post_live_likes |  |  |
+| **GET** | /live/{broadcast-id}/get_post_live_comments |  |  |
+| **GET** | /live/{broadcast-id}/heartbeat_and_get_viewer_count |  |  |
 
 ### For endpoints related to location functionality
 
-    locations/{location_id!s}/info/
-    locations/{location_id!s}/related/
-    locations/{location_id!s}/sections/
-    locations/{location_id!s}/sections/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /locations/{location-id}/info |  |  |
+| **GET** | /locations/{location-id}/related |  |  |
+| **GET** | /locations/{location-id}/sections |  |  |
 
 ### For endpoints in ``/media/``
 
-    media/{media_id!s}/info/
-    media/{media_id!s}/infos/
-    media/{media_id!s}/permalink/
-    media/{media_id!s}/comments/
-    media/{media_id!s}/comments/{comment_id!s}/child_comments/
-    media/{media_id!s}/comments/{comment_id!s}/inline_child_comments/
-    media/{media_id!s}/edit_media/
-    media/{media_id!s}/delete/
-    media/{media_id!s}/comment/
-    media/{media_id!s}/comment/{comment_id!s}/delete/
-    media/{media_id!s}/comment/bulk_delete/
-    media/{media_id!s}/likers/
-    media/{media_id!s}/likers_chrono/
-    media/{media_id!s}/like/
-    media/{media_id!s}/unlike/
-    media/seen/
-    media/{comment_id!s}/comment_like/
-    media/{comment_id!s}/comment_likers/
-    media/{comment_id!s}/comment_unlike/
-    media/{media_id!s}/save/
-    media/{media_id!s}/unsave/
-    media/{media_id!s}/disable_comments/
-    media/{media_id!s}/enable_comments/
-    media/{media_id!s}/{only_me!s}/
-    media/{story_pk!s}/list_reel_media_viewer/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /media/seen |  |  |
+| **GET** | /media/{story-pk}/list_reel_media_viewer |  |  |
+| **GET** | /media/{comment-id}/comment_like |  |  |
+| **GET** | /media/{comment-id}/comment_unlike |  |  |
+| **GET** | /media/{comment-id}/comment_likers |  |  |
+| **GET** | /media/{media-id}/{only_me!s} |  |  |
+| **GET** | /media/{media-id}/info |  |  |
+| **GET** | /media/{media-id}/infos |  |  |
+| **GET** | /media/{media-id}/like |  |  |
+| **GET** | /media/{media-id}/unlike |  |  |
+| **GET** | /media/{media-id}/likers |  |  |
+| **GET** | /media/{media-id}/likers_chrono |  |  |
+| **GET** | /media/{media-id}/save |  |  |
+| **GET** | /media/{media-id}/unsave |  |  |
+| **GET** | /media/{media-id}/permalink |  |  |
+| **GET** | /media/{media-id}/edit_media |  |  |
+| **GET** | /media/{media-id}/delete |  |  |
+| **GET** | /media/{media-id}/enable_comments |  |  |
+| **GET** | /media/{media-id}/disable_comments |  |  |
+| **GET** | /media/{media-id}/comment |  |  |
+| **GET** | /media/{media-id}/comment/bulk_delete |  |  |
+| **GET** | /media/{media-id}/comment/{comment-id}/child_comments |  |  |
+| **GET** | /media/{media-id}/comments |  |  |
+| **GET** | /media/{media-id}/comments/{comment-id}/child_comments |  |  |
+| **GET** | /media/{media-id}/comments/{comment-id}/inline_child_comments |  |  |
 
 ### For miscellaneous functions
 
-    qe/expose/
-    direct_v2/ranked_recipients/
-    direct_share/recent_recipients/
-    news/
-    news/inbox/
-    oembed/
-    language/bulk_translate/
-    fbsearch/topsearch/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /qe/expose |  |  |
+| **GET** | /oembed |  |  |
+| **GET** | /news |  |  |
+| **GET** | /news/inbox |  |  |
+| **GET** | /language/bulk_translate |  |  |
+| **GET** | /fbsearch/topsearch |  |  |
+| **GET** | /direct_v2/ranked_recipients |  |  |
+| **GET** | /direct_share/recent_recipients |  |  |
 
 ### For endpoints in ``/tags/``
 
-    tags/{tag!s}/info/
-    tags/{tag!s}/related/
-    tags/search/
-    tags/suggested/
-    tags/follow/{hashtag!s}/
-    tags/unfollow/{hashtag!s}/
-    tags/{tag!s}/sections/
-
-### For endpoints relating to upload functionality
-
-     upload/video/
-     upload/photo/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /tags/sarch |  |  |
+| **GET** | /tags/suggested |  |  |
+| **GET** | /tags/follow/{hashtag} |  |  |
+| **GET** | /tags/unfollow/{hashtag} |  |  |
+| **GET** | /tags/{tag}/info |  |  |
+| **GET** | /tags/{tag}/related |  |  |
+| **GET** | /tags/{tag}/sections |  |  |
 
 ### For endpoints in ``/users/``
 
-    users/self
-    users/{user_id!s}/info/
-    users/{user_name!s}/usernameinfo/
-    users/{user_id!s}/full_detail_info/
-    users/search/
-    users/check_username/
-    users/blocked_list/
-    users/reel_settings/
-    users/set_reel_settings/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /users/self |  |  |
+| **GET** | /users/search |  |  |
+| **GET** | /users/check_username |  |  |
+| **GET** | /users/blocked_list |  |  |
+| **GET** | /users/reel_settings |  |  |
+| **GET** | /users/set_reel_settings |  |  |
+| **GET** | /users/{user-id}/info |  |  |
+| **GET** | /users/{user-id}/full_detail_info |  |  |
+| **GET** | /users/{user-name}/usernameinfo |  |  |
 
 ### For endpoints in ``/usertags/``
 
-    usertags/{user_id!s}/feed/
-    usertags/{media_id!s}/remove/
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **GET** | /usertags/{user-id}/feed |  |  |
+| **GET** | /usertags/{media-id}/remove |  |  |
