@@ -24,46 +24,7 @@ servers:
 #                              Paths (Endpoints)                               #
 ################################################################################
 paths:
-  /accounts/login:
-    post:
-      tags: 
-      - Auth
-      summary: Login user to Instagram
-      description: Login to Instagram with username/password
-      responses:
-        200:
-          description: Successfully login the user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /users/self:
-    get:
-      tags:
-      - User
-      summary: User Profile
-      description: The User Profile endpoint returns information about the Instagram user
-        that has authorized with the application.
-      responses:
-        200:
-          description: Profile information for a user
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/User'
-        default:
-          description: Unexpected error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  
+  $ref: 'endpoints.yaml'
 
 ################################################################################
 #                                 Definitions                                  #
@@ -78,10 +39,9 @@ components:
     Error:
       type: object
       properties:
-        code:
-          type: integer
-          format: int32
         message:
           type: string
-        fields:
+        status:
+          type: string
+        error_type:
           type: string

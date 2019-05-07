@@ -1,0 +1,14 @@
+User:
+  type: object
+  properties:
+    username:
+      type: string
+Error:
+  type: object
+  properties:
+    message:
+      type: string
+    status:
+      type: string
+    error_type:
+      type: string
