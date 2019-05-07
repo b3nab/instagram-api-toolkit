@@ -1,3 +1,5 @@
+# ACCOUNTS endpoints
+
 /accounts/login:
   post:
     tags: 
@@ -25,6 +27,16 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/Error'
+/accounts/edit_profile:
+/accounts/change_profile_picture:
+/accounts/remove_profile_picture:
+/accounts/current_user:
+/accounts/set_private:
+/accounts/set_public:
+/accounts/logout:
+
+# USERS endpoints
+
 /users/self:
   get:
     tags:
@@ -45,3 +57,157 @@
           application/json:
             schema:
               $ref: './schemas.yaml#/Error'
+/users/search:
+/users/check_username:
+/users/blocked_list:
+/users/reel_settings:
+/users/set_reel_settings:
+/users/{user-id}/info:
+/users/{user-id}/full_detail_info:
+/users/{user-name}/usernameinfo:
+
+# UPLOAD endpoints
+
+/upload/photo:
+/upload/video:
+
+# MEDIA endpoints
+
+/media/configure:
+/media/configure_to_story:
+/media/configure_sidecar:
+/media/seen:
+/media/{story-pk}/list_reel_media_viewer:
+/media/{comment-id}/comment_like:
+/media/{comment-id}/comment_unlike:
+/media/{comment-id}/comment_likers:
+/media/{media-id}/{only_me}:
+/media/{media-id}/info:
+/media/{media-id}/infos:
+/media/{media-id}/like:
+/media/{media-id}/unlike:
+/media/{media-id}/likers:
+/media/{media-id}/likers_chrono:
+/media/{media-id}/save:
+/media/{media-id}/unsave:
+/media/{media-id}/permalink:
+/media/{media-id}/edit_media:
+/media/{media-id}/delete:
+/media/{media-id}/enable_comments:
+/media/{media-id}/disable_comments:
+/media/{media-id}/comment:
+/media/{media-id}/comment/bulk_delete:
+/media/{media-id}/comment/{comment-id}/child_comments:
+/media/{media-id}/comments:
+/media/{media-id}/comments/{comment-id}/child_comments:
+/media/{media-id}/comments/{comment-id}/inline_child_comments:
+
+# COLLECTIONS endpoints
+
+/feed/collection/{collection-id}:
+/collections/{collection-id}/edit:
+/collections/{collection-id}/delete:
+
+# DISCOVER endpoints
+
+/discover:
+/discover/channels_home:
+/discover/chaining:
+/discover/top_live:
+/discover/top_live_status:
+
+# FEED endpoints
+
+/feed:
+/feed/liked:
+/feed/saved:
+/feed/only_me_feed:
+/feed/timeline:
+/feed/popular:
+/feed/reels_tray:
+/feed/reels_media:
+/feed/tag/{tag}:
+/feed/location/{location-id}:
+/feed/user/{user-id}:
+/feed/user/{user-name}/username:
+/feed/user/{user-id}/reel_media:
+/feed/user/{user-id}/story:
+
+# FRIENDSHIPS endpoints
+
+/friendships:
+/friendships/autocomplete_user_list:
+/friendships/{user-id}/following:
+/friendships/pending:
+/friendships/show/{user-id}:
+/friendships/show_many:
+/friendships/create/{user-id}:
+/friendships/destroy/{user-id}:
+/friendships/block/{user-id}:
+/friendships/unblock/{user-id}:
+/friendships/block_friend_reel/{user-id}:
+/friendships/unblock_friend_reel/{user-id}:
+/friendships/set_reel_block_status:
+/friendships/blocked_reels:
+/friendships/favorite/{user-id}:
+/friendships/unfavorite/{user-id}:
+/friendships/ignore/{user-id}:
+/friendships/remove_follower/{user-id}:
+
+# HIGHLIGHTS endpoints
+
+/highlights:
+/highlights/create_reel:
+/highlights/{user-id}/highlights_tray:
+/highlights/{highlight-id}/edit_reel:
+/highlights/{highlight-id}/delete_reel:
+
+# IGTV endpoints
+
+/igtv/channel:
+/igtv/search:
+/igtv/tv_guide:
+
+# LIVE endpoints
+
+/live/get_suggested_broadcasts:
+/live/{broadcast-id}/info:
+/live/{broadcast-id}/like:
+/live/{broadcast-id}/comment:
+/live/{broadcast-id}/get_comment:
+/live/{broadcast-id}/get_like_count:
+/live/{broadcast-id}/get_post_live_likes:
+/live/{broadcast-id}/get_post_live_comments:
+/live/{broadcast-id}/heartbeat_and_get_viewer_count:
+
+# MISCS endpoints
+
+/qe/expose:
+/oembed:
+/news:
+/news/inbox:
+/language/bulk_translate:
+/fbsearch/topsearch:
+/direct_v2/ranked_recipients:
+/direct_share/recent_recipients:
+
+# LOCATIONS endpoints
+
+/locations/{location-id}/info:
+/locations/{location-id}/related:
+/locations/{location-id}/sections:
+
+# TAGS endpoints
+
+/tags/sarch:
+/tags/suggested:
+/tags/follow/{hashtag}:
+/tags/unfollow/{hashtag}:
+/tags/{tag}/info:
+/tags/{tag}/related:
+/tags/{tag}/sections:
+
+# USERTAGS endpoints
+
+/usertags/{user-id}/feed:
+/usertags/{media-id}/remove:
