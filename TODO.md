@@ -7,7 +7,7 @@ The main plan is to create the schema and extend it or update it in future time 
 ### A. The Schema
 
 1. API.md
-   1. [ ] list all endpoints
+   1. [x] list all endpoints
    2. [ ] list all method for endpoints (add a simple GET, POST, DELETE, PUT near the endpoint)
    3. [ ] list all parameters used in endpoints
 2. instagram.yaml
