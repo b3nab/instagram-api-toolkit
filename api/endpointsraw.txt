@@ -204,7 +204,6 @@ media/{0}/unsave/
 media/validate_reel_url/
 media/{0}/comment/
 media/seen/
-media/seen/?reel=1&live_vod=0
 media/configure_to_reel/
 media/configure_to_story/?video=1
 media/configure_to_story/
@@ -335,3 +334,7 @@ direct_v2/ranked_recipients/?mode=raven&show_threads=true&query={0}&use_unified_
 direct_v2/ranked_recipients
 direct_v2/threads/broadcast/story_share/?media_type={0}
 direct_v2/threads/{0}/items/{1}/delete/
+
+### API 2 Endpoints ###
+media/seen/?reel=1&live_vod=0
+
