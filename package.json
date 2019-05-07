@@ -2,17 +2,23 @@
   "name": "instagram-api-toolkit",
   "version": "0.0.1",
   "description": "toolkit to create multiple SDKs of Instagram Private API for whatever languages and frameworks",
-  "main": "index.js",
+  "main": "toolkit.js",
   "repository": "https://github.com/instagrambot/instagram-api-toolkit.git",
   "author": "Benedetto Abbenanti <b3nab@users.noreply.github.com>",
   "license": "MIT",
   "private": true,
   "scripts": {
     "generate": "./tools/auto_generate_sdks.sh",
+    "beta": "node toolkit.build.js",
+    "build-toolkit": "babel toolkit.js -o toolkit.build.js",
     "viewer": "openapi-viewer instagram.yaml"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "@openapitools/openapi-generator-cli": "^0.0.9-4.0.0-beta3",
+    "inquirer": "^6.3.1",
     "openapi-viewer": "^1.0.1"
   }
 }
