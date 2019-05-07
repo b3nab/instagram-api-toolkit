@@ -1,0 +1,40 @@
+openapi: 3.0.1
+################################################################################
+#                              API Information                                 #
+################################################################################
+info:
+  title: Instagram API
+  description: The Instagram Private API in OpenAPI specs.v3.0
+  version: 0.0.1
+################################################################################
+#                  Host, Base Path, Schemes and Content Types                  #
+################################################################################
+servers:
+- url: https://i.instagram.com/api/v1
+  description: The private API of Instagram
+  # variables:
+  #   base: 
+  #     default: api
+  #   version: 
+  #     enum: 
+  #       - v1
+  #       - v2
+  #     default: v2
+################################################################################
+#                              Paths (Endpoints)                               #
+################################################################################
+paths:
+  /accounts/login:
+    post:
+      tags: 
+      - Auth
+      summary: Login user to Instagram
+      description: Login to Instagram with username/password
+  
+
+################################################################################
+#                                 Definitions                                  #
+################################################################################
+# components:
+#   schemas:
+    
