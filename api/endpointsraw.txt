@@ -291,6 +291,9 @@ former_full_names
 former_bio_texts
 former_links_in_bio
 
+direct_share/recent_recipients/
+direct_share/inbox/
+
 ### API V2 Endpoints ###
 direct_v2/threads/broadcast/configure_video/
 direct_v2/threads/broadcast/link/
@@ -307,7 +310,6 @@ direct_v2/threads/broadcast/live_viewer_invite/
 direct_v2/create_group_thread/
 
 direct_v2/get_presence/
-direct_share/inbox/
 direct_v2/threads/{0}/label/
 direct_v2/threads/{0}/hide/
 direct_v2/threads/{0}/add_user/
@@ -332,6 +334,5 @@ direct_v2/threads/decline_all/
 direct_v2/threads/get_by_participants/?recipient_users=[{0}]
 direct_v2/ranked_recipients/?mode=raven&show_threads=true&query={0}&use_unified_inbox=true
 direct_v2/ranked_recipients
-direct_share/recent_recipients/
 direct_v2/threads/broadcast/story_share/?media_type={0}
 direct_v2/threads/{0}/items/{1}/delete/
