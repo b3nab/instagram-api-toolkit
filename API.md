@@ -6,8 +6,7 @@ This is an example of a table of endpoints, use this as a reference.
 
 | METHOD | endpoint | parameters | description |
 | ------ | -------- | ---------- | --- |
-| **GET** | /path/to | ```
-par1, par2, test``` | Description for this endpoint explaining the action it does |
+| **GET** | /path/to | par1, par2, test | Description for this endpoint explaining the action it does |
 
 ### Upload/configure Media Endpoints
 
