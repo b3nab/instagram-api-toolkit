@@ -12,6 +12,27 @@ This is an example of a table of endpoints, use this as a reference.
     Following there are all endpoints with method and parameters.
     The tables will explain for itself, just read the description to understand what is the endpoint's action it does.
 
+## Auth Flow and API requests
+
+The auth flow is simple, it will generate a token that you will use in every request done to private api.
+Doing a **POST** request to `/api/v1/accounts/login` with its parameters (check the table below, it's the first endpoint).
+
+*Every* request need a modified `Headers`.
+Check the file [login.py](https://github.com/reliefs/instagramapi/blob/master/login.py)
+
+### account Endpoints
+
+| METHOD | Endpoint | Parameters | Description |
+| ------ | -------- | ---------- | --- |
+| **POST** | /accounts/login | device_id': self.device_id,guid': self.uuid,adid': self.ad_id,phone_id': self.phone_id,_csrftoken': self.csrftoken,username': self.username,password': self.password,login_attempt_count': '0', |  |
+| **POST** | /accounts/edit_profile | username': self.authenticated_user_name,gender': int(gender),phone_number': phone_number or '',first_name': first_name or '',biography': biography or '',external_url': external_url or '',email': email, |  |
+| **POST** | /accounts/change_profile_picture | photo_data: string of image |  |
+| **POST** | /accounts/remove_profile_picture |  |  |
+| **POST** | /accounts/current_user |  |  |
+| **POST** | /accounts/set_private |  |  |
+| **POST** | /accounts/set_public |  |  |
+| **POST** | /accounts/logout | phone_id': self.phone_id,_csrftoken': self.csrftoken,guid': self.uuid,device_id': self.device_id,_uuid': self.uuid |  |
+
 ### Upload/configure Media Endpoints
 
 | METHOD | Endpoint | Parameters | Description |
@@ -26,19 +47,6 @@ This is an example of a table of endpoints, use this as a reference.
 | **POST** | /media/configure | caption:string, |  |
 | **POST** | /media/configure_to_story |  |  |
 | **POST** | /media/configure_sidecar |  |  |
-
-### account Endpoints
-
-| METHOD | Endpoint | Parameters | Description |
-| ------ | -------- | ---------- | --- |
-| **GET** | /accounts/login | device_id': self.device_id,guid': self.uuid,adid': self.ad_id,phone_id': self.phone_id,_csrftoken': self.csrftoken,username': self.username,password': self.password,login_attempt_count': '0', |  |
-| **POST** | /accounts/edit_profile | username': self.authenticated_user_name,gender': int(gender),phone_number': phone_number or '',first_name': first_name or '',biography': biography or '',external_url': external_url or '',email': email, |  |
-| **POST** | /accounts/change_profile_picture | photo_data: string of image |  |
-| **POST** | /accounts/remove_profile_picture |  |  |
-| **POST** | /accounts/current_user |  |  |
-| **POST** | /accounts/set_private |  |  |
-| **POST** | /accounts/set_public |  |  |
-| **POST** | /accounts/logout | phone_id': self.phone_id,_csrftoken': self.csrftoken,guid': self.uuid,device_id': self.device_id,_uuid': self.uuid |  |
 
 ### collections
 
