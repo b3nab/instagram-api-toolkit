@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "generate": "./tools/auto_generate_sdks.sh",
-    "viewer": "openapi-viewer instagram.yaml",
+    "viewer": "openapi-viewer instagram.yaml"
   },
   "devDependencies": {
     "@openapitools/openapi-generator-cli": "^0.0.9-4.0.0-beta3",
