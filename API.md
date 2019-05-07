@@ -24,14 +24,14 @@ Check the file [login.py](https://github.com/reliefs/instagramapi/blob/master/lo
 
 | METHOD | Endpoint | Parameters | Description |
 | ------ | -------- | ---------- | --- |
-| **POST** | /accounts/login | device_id': self.device_id,guid': self.uuid,adid': self.ad_id,phone_id': self.phone_id,_csrftoken': self.csrftoken,username': self.username,password': self.password,login_attempt_count': '0', |  |
-| **POST** | /accounts/edit_profile | username': self.authenticated_user_name,gender': int(gender),phone_number': phone_number or '',first_name': first_name or '',biography': biography or '',external_url': external_url or '',email': email, |  |
+| **POST** | /accounts/login | device_id, guid, adid, phone_id, _csrftoken, username, password, login_attempt_count: '0' |  |
+| **POST** | /accounts/edit_profile | username, gender: int(gender), phone_number, first_name, biography, external_url, email |  |
 | **POST** | /accounts/change_profile_picture | photo_data: string of image |  |
 | **POST** | /accounts/remove_profile_picture |  |  |
 | **POST** | /accounts/current_user |  |  |
 | **POST** | /accounts/set_private |  |  |
 | **POST** | /accounts/set_public |  |  |
-| **POST** | /accounts/logout | phone_id': self.phone_id,_csrftoken': self.csrftoken,guid': self.uuid,device_id': self.device_id,_uuid': self.uuid |  |
+| **POST** | /accounts/logout | phone_id, _csrftoken, guid, device_id, _uuid |  |
 
 ### Upload/configure Media Endpoints
 
@@ -44,7 +44,7 @@ Check the file [login.py](https://github.com/reliefs/instagramapi/blob/master/lo
 
 | METHOD | Endpoint | Parameters | Description |
 | ------ | -------- | ---------- | --- |
-| **POST** | /media/configure | caption:string, |  |
+| **POST** | /media/configure | caption, |  |
 | **POST** | /media/configure_to_story |  |  |
 | **POST** | /media/configure_sidecar |  |  |
 
@@ -52,9 +52,9 @@ Check the file [login.py](https://github.com/reliefs/instagramapi/blob/master/lo
 
 | METHOD | Endpoint | Parameters | Description |
 | ------ | -------- | ---------- | --- |
-| **GET** | /feed/collection/{collection-id!s}/ |  |  |
-| **GET** | /collections/{collection-id!s}/edit |  |  |
-| **GET** | /collections/{collection-id!s}/delete |  |  |
+| **GET** | /feed/collection/{collection-id}/ |  |  |
+| **GET** | /collections/{collection-id}/edit |  |  |
+| **GET** | /collections/{collection-id}/delete |  |  |
 
 ### Discover Endpoints
 
@@ -78,12 +78,12 @@ Check the file [login.py](https://github.com/reliefs/instagramapi/blob/master/lo
 | **GET** | /feed/popular |  |  |
 | **GET** | /feed/reels_tray |  |  |
 | **GET** | /feed/reels_media |  |  |
-| **GET** | /feed/tag/{tag!s} |  |  |
-| **GET** | /feed/location/{location-id!s} |  |  |
-| **GET** | /feed/user/{user-id!s} |  |  |
-| **GET** | /feed/user/{user-name!s}/username |  |  |
-| **GET** | /feed/user/{user-id!s}/reel_media |  |  |
-| **GET** | /feed/user/{user-id!s}/story |  |  |
+| **GET** | /feed/tag/{tag} |  |  |
+| **GET** | /feed/location/{location-id} |  |  |
+| **GET** | /feed/user/{user-id} |  |  |
+| **GET** | /feed/user/{user-name}/username |  |  |
+| **GET** | /feed/user/{user-id}/reel_media |  |  |
+| **GET** | /feed/user/{user-id}/story |  |  |
 
 ### Friendships endpoints
 
@@ -158,7 +158,7 @@ Check the file [login.py](https://github.com/reliefs/instagramapi/blob/master/lo
 | **GET** | /media/{comment-id}/comment_like |  |  |
 | **GET** | /media/{comment-id}/comment_unlike |  |  |
 | **GET** | /media/{comment-id}/comment_likers |  |  |
-| **GET** | /media/{media-id}/{only_me!s} |  |  |
+| **GET** | /media/{media-id}/{only_me} |  |  |
 | **GET** | /media/{media-id}/info |  |  |
 | **GET** | /media/{media-id}/infos |  |  |
 | **GET** | /media/{media-id}/like |  |  |
