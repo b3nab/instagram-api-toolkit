@@ -1,0 +1,4 @@
+cookieAuth:
+  type: apiKey
+  in: cookie
+  name: csrftoken

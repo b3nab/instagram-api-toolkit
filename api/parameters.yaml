@@ -1,3 +1,24 @@
 ################################################################################
 #                                 Parameters                                   #
 ################################################################################
+
+#-----------------
+# Query params
+#-----------------
+username:
+  in: query
+  name: username
+  schema:
+    type: string
+    required: true
+  description: >
+    the username (or nickname)
+#-----------------
+password:
+  in: query
+  name: password
+  schema:
+    type: string
+    required: true
+  description: >
+    the password to use for authentication
