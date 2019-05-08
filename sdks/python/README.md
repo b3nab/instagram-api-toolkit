@@ -54,10 +54,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = private_instagram_sdk.AuthApi(private_instagram_sdk.ApiClient(configuration))
+username = 'username_example' # str | the username (or nickname)  (optional)
+password = 'password_example' # str | the password to use for authentication  (optional)
 
 try:
     # Login user to Instagram
-    api_response = api_instance.accounts_login_post()
+    api_response = api_instance.accounts_login_post(username=username, password=password)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->accounts_login_post: %s\n" % e)
@@ -82,7 +84,13 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+
+## cookieAuth
+
+- **Type**: API key
+- **API key parameter name**: csrftoken
+- **Location**: 
+
 
 ## Author
 

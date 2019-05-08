@@ -31,52 +31,31 @@ class Error(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        'code': 'int',
         'message': 'str',
-        'fields': 'str'
+        'status': 'str',
+        'error_type': 'str'
     }
 
     attribute_map = {
-        'code': 'code',
         'message': 'message',
-        'fields': 'fields'
+        'status': 'status',
+        'error_type': 'error_type'
     }
 
-    def __init__(self, code=None, message=None, fields=None):  # noqa: E501
+    def __init__(self, message=None, status=None, error_type=None):  # noqa: E501
         """Error - a model defined in OpenAPI"""  # noqa: E501
 
-        self._code = None
         self._message = None
-        self._fields = None
+        self._status = None
+        self._error_type = None
         self.discriminator = None
 
-        if code is not None:
-            self.code = code
         if message is not None:
             self.message = message
-        if fields is not None:
-            self.fields = fields
-
-    @property
-    def code(self):
-        """Gets the code of this Error.  # noqa: E501
-
-
-        :return: The code of this Error.  # noqa: E501
-        :rtype: int
-        """
-        return self._code
-
-    @code.setter
-    def code(self, code):
-        """Sets the code of this Error.
-
-
-        :param code: The code of this Error.  # noqa: E501
-        :type: int
-        """
-
-        self._code = code
+        if status is not None:
+            self.status = status
+        if error_type is not None:
+            self.error_type = error_type
 
     @property
     def message(self):
@@ -100,25 +79,46 @@ class Error(object):
         self._message = message
 
     @property
-    def fields(self):
-        """Gets the fields of this Error.  # noqa: E501
+    def status(self):
+        """Gets the status of this Error.  # noqa: E501
 
 
-        :return: The fields of this Error.  # noqa: E501
+        :return: The status of this Error.  # noqa: E501
         :rtype: str
         """
-        return self._fields
+        return self._status
 
-    @fields.setter
-    def fields(self, fields):
-        """Sets the fields of this Error.
+    @status.setter
+    def status(self, status):
+        """Sets the status of this Error.
 
 
-        :param fields: The fields of this Error.  # noqa: E501
+        :param status: The status of this Error.  # noqa: E501
         :type: str
         """
 
-        self._fields = fields
+        self._status = status
+
+    @property
+    def error_type(self):
+        """Gets the error_type of this Error.  # noqa: E501
+
+
+        :return: The error_type of this Error.  # noqa: E501
+        :rtype: str
+        """
+        return self._error_type
+
+    @error_type.setter
+    def error_type(self, error_type):
+        """Sets the error_type of this Error.
+
+
+        :param error_type: The error_type of this Error.  # noqa: E501
+        :type: str
+        """
+
+        self._error_type = error_type
 
     def to_dict(self):
         """Returns the model properties as a dict"""

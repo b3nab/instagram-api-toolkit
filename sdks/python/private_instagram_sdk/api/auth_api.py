@@ -46,6 +46,8 @@ class AuthApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str username: the username (or nickname) 
+        :param str password: the password to use for authentication 
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
@@ -67,6 +69,8 @@ class AuthApi(object):
         >>> result = thread.get()
 
         :param async_req bool
+        :param str username: the username (or nickname) 
+        :param str password: the password to use for authentication 
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
@@ -74,7 +78,7 @@ class AuthApi(object):
 
         local_var_params = locals()
 
-        all_params = []  # noqa: E501
+        all_params = ['username', 'password']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -94,6 +98,10 @@ class AuthApi(object):
         path_params = {}
 
         query_params = []
+        if 'username' in local_var_params:
+            query_params.append(('username', local_var_params['username']))  # noqa: E501
+        if 'password' in local_var_params:
+            query_params.append(('password', local_var_params['password']))  # noqa: E501
 
         header_params = {}
 

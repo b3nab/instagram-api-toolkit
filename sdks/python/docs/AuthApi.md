@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **accounts_login_post**
-> User accounts_login_post()
+> User accounts_login_post(username=username, password=password)
 
 Login user to Instagram
 
@@ -25,17 +25,23 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = private_instagram_sdk.AuthApi()
+username = 'username_example' # str | the username (or nickname)  (optional)
+password = 'password_example' # str | the password to use for authentication  (optional)
 
 try:
     # Login user to Instagram
-    api_response = api_instance.accounts_login_post()
+    api_response = api_instance.accounts_login_post(username=username, password=password)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->accounts_login_post: %s\n" % e)
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **username** | **str**| the username (or nickname)  | [optional] 
+ **password** | **str**| the password to use for authentication  | [optional] 
 
 ### Return type
 
