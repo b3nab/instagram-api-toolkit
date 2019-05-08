@@ -36,41 +36,41 @@ class AuthApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def accounts_login_post(self, **kwargs):  # noqa: E501
+    def accounts_login_post(self, username, password, **kwargs):  # noqa: E501
         """Login user to Instagram  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.accounts_login_post(async_req=True)
+        >>> thread = api.accounts_login_post(username, password, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str username: the username (or nickname) 
-        :param str password: the password to use for authentication 
+        :param str username: the username (or nickname)  (required)
+        :param str password: the password to use for authentication  (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.accounts_login_post_with_http_info(**kwargs)  # noqa: E501
+            return self.accounts_login_post_with_http_info(username, password, **kwargs)  # noqa: E501
         else:
-            (data) = self.accounts_login_post_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.accounts_login_post_with_http_info(username, password, **kwargs)  # noqa: E501
             return data
 
-    def accounts_login_post_with_http_info(self, **kwargs):  # noqa: E501
+    def accounts_login_post_with_http_info(self, username, password, **kwargs):  # noqa: E501
         """Login user to Instagram  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.accounts_login_post_with_http_info(async_req=True)
+        >>> thread = api.accounts_login_post_with_http_info(username, password, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str username: the username (or nickname) 
-        :param str password: the password to use for authentication 
+        :param str username: the username (or nickname)  (required)
+        :param str password: the password to use for authentication  (required)
         :return: User
                  If the method is called asynchronously,
                  returns the request thread.
@@ -92,6 +92,14 @@ class AuthApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'username' is set
+        if ('username' not in local_var_params or
+                local_var_params['username'] is None):
+            raise ApiValueError("Missing the required parameter `username` when calling `accounts_login_post`")  # noqa: E501
+        # verify the required parameter 'password' is set
+        if ('password' not in local_var_params or
+                local_var_params['password'] is None):
+            raise ApiValueError("Missing the required parameter `password` when calling `accounts_login_post`")  # noqa: E501
 
         collection_formats = {}
 
