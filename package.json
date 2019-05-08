@@ -8,15 +8,20 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "generate": "./tools/auto_generate_sdks.sh",
+    "generate": "yarn build-schema && ./tools/auto_generate_sdks.sh",
     "beta": "node toolkit.build.js",
     "build-toolkit": "babel toolkit.js -o toolkit.build.js",
-    "viewer": "openapi-viewer instagram.yaml"
+    "viewer": "openapi-viewer instagram.yaml",
+    "validate": "",
+    "install-python-sdk": "cd ./sdks/python && python setup.py install",
+    "test-python": "yarn install-python-sdk && python ./test/python-sdk.py",
+    "build-schema": "swagger-cli bundle -o instagram-api.bundle.json ./api/instagram.yaml"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4"
+    "@babel/preset-env": "^7.4.4",
+    "swagger-cli": "^2.2.1"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
