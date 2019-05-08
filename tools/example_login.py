@@ -79,6 +79,7 @@ assert response.status_code == 200
 print(response.text)
 # print(response.links)
 print(response.url)
+print(response.headers)
 
 #y = json.dumps(response.content)
 #print(y)
