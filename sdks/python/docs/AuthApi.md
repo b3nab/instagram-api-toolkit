@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **accounts_login_post**
-> User accounts_login_post(username, password)
+> InlineResponse200 accounts_login_post(ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
 
 Login user to Instagram
 
@@ -25,12 +25,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = private_instagram_sdk.AuthApi()
-username = 'username_example' # str | the username (or nickname) 
-password = 'password_example' # str | the password to use for authentication 
+ig_sig_key_version = 56 # int |  (optional)
+signed_body = 'signed_body_example' # str |  (optional)
 
 try:
     # Login user to Instagram
-    api_response = api_instance.accounts_login_post(username, password)
+    api_response = api_instance.accounts_login_post(ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->accounts_login_post: %s\n" % e)
@@ -40,12 +40,12 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **username** | **str**| the username (or nickname)  | 
- **password** | **str**| the password to use for authentication  | 
+ **ig_sig_key_version** | **int**|  | [optional] 
+ **signed_body** | **str**|  | [optional] 
 
 ### Return type
 
-[**User**](User.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 
@@ -53,7 +53,7 @@ No authorization required
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/x-www-form-urlencoded
  - **Accept**: application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

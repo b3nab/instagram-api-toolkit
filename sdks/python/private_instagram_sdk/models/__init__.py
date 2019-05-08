@@ -14,5 +14,9 @@
 from __future__ import absolute_import
 
 # import models into model package
+from private_instagram_sdk.models.auth_body import AuthBody
 from private_instagram_sdk.models.error import Error
+from private_instagram_sdk.models.inline_object import InlineObject
+from private_instagram_sdk.models.inline_response200 import InlineResponse200
+from private_instagram_sdk.models.inline_response400 import InlineResponse400
 from private_instagram_sdk.models.user import User

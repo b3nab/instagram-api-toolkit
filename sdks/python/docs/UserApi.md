@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **users_self_get**
-> User users_self_get()
+> InlineResponse200 users_self_get()
 
 User Profile
 
@@ -39,7 +39,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**User**](User.md)
+[**InlineResponse200**](InlineResponse200.md)
 
 ### Authorization
 

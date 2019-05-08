@@ -54,12 +54,12 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = private_instagram_sdk.AuthApi(private_instagram_sdk.ApiClient(configuration))
-username = 'username_example' # str | the username (or nickname) 
-password = 'password_example' # str | the password to use for authentication 
+ig_sig_key_version = 56 # int |  (optional)
+signed_body = 'signed_body_example' # str |  (optional)
 
 try:
     # Login user to Instagram
-    api_response = api_instance.accounts_login_post(username, password)
+    api_response = api_instance.accounts_login_post(ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->accounts_login_post: %s\n" % e)
@@ -78,7 +78,11 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Models
 
+ - [AuthBody](docs/AuthBody.md)
  - [Error](docs/Error.md)
+ - [InlineObject](docs/InlineObject.md)
+ - [InlineResponse200](docs/InlineResponse200.md)
+ - [InlineResponse400](docs/InlineResponse400.md)
  - [User](docs/User.md)
 
 

@@ -36,49 +36,49 @@ class AuthApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def accounts_login_post(self, username, password, **kwargs):  # noqa: E501
+    def accounts_login_post(self, **kwargs):  # noqa: E501
         """Login user to Instagram  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.accounts_login_post(username, password, async_req=True)
+        >>> thread = api.accounts_login_post(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str username: the username (or nickname)  (required)
-        :param str password: the password to use for authentication  (required)
-        :return: User
+        :param int ig_sig_key_version:
+        :param str signed_body:
+        :return: InlineResponse200
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.accounts_login_post_with_http_info(username, password, **kwargs)  # noqa: E501
+            return self.accounts_login_post_with_http_info(**kwargs)  # noqa: E501
         else:
-            (data) = self.accounts_login_post_with_http_info(username, password, **kwargs)  # noqa: E501
+            (data) = self.accounts_login_post_with_http_info(**kwargs)  # noqa: E501
             return data
 
-    def accounts_login_post_with_http_info(self, username, password, **kwargs):  # noqa: E501
+    def accounts_login_post_with_http_info(self, **kwargs):  # noqa: E501
         """Login user to Instagram  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.accounts_login_post_with_http_info(username, password, async_req=True)
+        >>> thread = api.accounts_login_post_with_http_info(async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param str username: the username (or nickname)  (required)
-        :param str password: the password to use for authentication  (required)
-        :return: User
+        :param int ig_sig_key_version:
+        :param str signed_body:
+        :return: InlineResponse200
                  If the method is called asynchronously,
                  returns the request thread.
         """
 
         local_var_params = locals()
 
-        all_params = ['username', 'password']  # noqa: E501
+        all_params = ['ig_sig_key_version', 'signed_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -92,34 +92,30 @@ class AuthApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'username' is set
-        if ('username' not in local_var_params or
-                local_var_params['username'] is None):
-            raise ApiValueError("Missing the required parameter `username` when calling `accounts_login_post`")  # noqa: E501
-        # verify the required parameter 'password' is set
-        if ('password' not in local_var_params or
-                local_var_params['password'] is None):
-            raise ApiValueError("Missing the required parameter `password` when calling `accounts_login_post`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
 
         query_params = []
-        if 'username' in local_var_params:
-            query_params.append(('username', local_var_params['username']))  # noqa: E501
-        if 'password' in local_var_params:
-            query_params.append(('password', local_var_params['password']))  # noqa: E501
 
         header_params = {}
 
         form_params = []
         local_var_files = {}
+        if 'ig_sig_key_version' in local_var_params:
+            form_params.append(('ig_sig_key_version', local_var_params['ig_sig_key_version']))  # noqa: E501
+        if 'signed_body' in local_var_params:
+            form_params.append(('signed_body', local_var_params['signed_body']))  # noqa: E501
 
         body_params = None
         # HTTP header `Accept`
         header_params['Accept'] = self.api_client.select_header_accept(
             ['application/json'])  # noqa: E501
+
+        # HTTP header `Content-Type`
+        header_params['Content-Type'] = self.api_client.select_header_content_type(  # noqa: E501
+            ['application/x-www-form-urlencoded'])  # noqa: E501
 
         # Authentication setting
         auth_settings = []  # noqa: E501
@@ -132,7 +128,7 @@ class AuthApi(object):
             body=body_params,
             post_params=form_params,
             files=local_var_files,
-            response_type='User',  # noqa: E501
+            response_type='InlineResponse200',  # noqa: E501
             auth_settings=auth_settings,
             async_req=local_var_params.get('async_req'),
             _return_http_data_only=local_var_params.get('_return_http_data_only'),  # noqa: E501

@@ -29,6 +29,10 @@ from private_instagram_sdk.exceptions import ApiValueError
 from private_instagram_sdk.exceptions import ApiKeyError
 from private_instagram_sdk.exceptions import ApiException
 # import models into sdk package
+from private_instagram_sdk.models.auth_body import AuthBody
 from private_instagram_sdk.models.error import Error
+from private_instagram_sdk.models.inline_object import InlineObject
+from private_instagram_sdk.models.inline_response200 import InlineResponse200
+from private_instagram_sdk.models.inline_response400 import InlineResponse400
 from private_instagram_sdk.models.user import User
 
