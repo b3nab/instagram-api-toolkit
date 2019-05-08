@@ -1,6 +1,12 @@
 ################################################################################
 #                                 Parameters                                   #
 ################################################################################
+# Documentation link
+# https://swagger.io/docs/specification/describing-parameters/
+
+#-----------------
+# Path params
+#-----------------
 
 #-----------------
 # Query params
@@ -10,7 +16,7 @@ username:
   name: username
   schema:
     type: string
-    required: true
+  required: true
   description: >
     the username (or nickname)
 #-----------------
@@ -19,6 +25,22 @@ password:
   name: password
   schema:
     type: string
-    required: true
+  required: true
   description: >
     the password to use for authentication
+
+#-----------------
+# Header params
+#-----------------
+ua:
+  in: header
+  name: User-Agent
+  schema:
+    type: string
+  required: true
+  description: >
+    the password to use for authentication
+
+#-----------------
+# Cookie params
+#-----------------

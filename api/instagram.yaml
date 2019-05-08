@@ -25,7 +25,9 @@ components:
     $ref: './auth.yaml'
   schemas:
     $ref: './schemas.yaml#/schemas'
-  headers:
-    $ref: './headers.yaml'
+  # headers:
+  #   $ref: './headers.yaml'
   parameters:
     $ref: './parameters.yaml'
+  requestBodies:
+    $ref: './body.yaml'

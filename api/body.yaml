@@ -1,0 +1,39 @@
+################################################################################
+#                                  Request Body                                #
+################################################################################
+# Documentation link
+# https://swagger.io/docs/specification/describing-request-body/
+
+authData:
+  description: Optional description in *Markdown*
+  required: true
+  content:
+    # application/json:
+    #   schema:
+    #     $ref: '#/components/schemas/Pet'
+    # application/xml:
+    #   schema:
+    #     $ref: '#/components/schemas/Pet'
+    application/x-www-form-urlencoded:
+      schema:
+        $ref: './schemas.yaml#/schemas/AuthBody'
+    # text/plain:
+    #   schema:
+    #     type: string
+
+# ig_sig_key_version:
+#   in: query
+#   name: ig_sig_key_version
+#   schema:
+#     type: string
+#   required: true
+#   description: >
+#     the password to use for authentication
+# signed_body:
+#   in: query
+#   name: signed_body
+#   schema:
+#     type: string
+#   required: true
+#   description: >
+#     the password to use for authentication

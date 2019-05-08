@@ -13,3 +13,10 @@ schemas:
         type: string
       error_type:
         type: string
+  AuthBody:
+    type: object
+    properties:
+      ig_sig_key_version:
+        type: integer
+      signed_body:
+        type: string
