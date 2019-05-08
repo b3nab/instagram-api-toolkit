@@ -76,8 +76,8 @@ session.headers.update({'User-Agent': user_agent})
 response = session.post(LOGIN_URL, data=data)
 
 assert response.status_code == 200
-print(response.links)
-
+print(response.text)
+# print(response.links)
 print(response.url)
 
 #y = json.dumps(response.content)
