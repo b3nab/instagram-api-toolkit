@@ -16,9 +16,15 @@
   "devDependencies": {
     "@babel/cli": "^7.4.4",
     "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-env": "^7.4.4"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "@openapitools/openapi-generator-cli": "^0.0.9-4.0.0-beta3",
-    "inquirer": "^6.3.1",
-    "openapi-viewer": "^1.0.1"
+    "chalk": "^2.4.2",
+    "core-js": "3",
+    "enquirer": "^2.3.0",
+    "openapi-viewer": "^1.0.1",
+    "shelljs": "^0.8.3"
   }
 }
