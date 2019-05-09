@@ -36,16 +36,17 @@ class AuthApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def accounts_login_post(self, **kwargs):  # noqa: E501
+    def accounts_login_post(self, user_agent, **kwargs):  # noqa: E501
         """Login user to Instagram  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.accounts_login_post(async_req=True)
+        >>> thread = api.accounts_login_post(user_agent, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
+        :param str user_agent: the User-Agent used by the Instagram App (be carefull in generation of a new one)  (required)
         :param int ig_sig_key_version:
         :param str signed_body:
         :return: InlineResponse200
@@ -54,21 +55,22 @@ class AuthApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.accounts_login_post_with_http_info(**kwargs)  # noqa: E501
+            return self.accounts_login_post_with_http_info(user_agent, **kwargs)  # noqa: E501
         else:
-            (data) = self.accounts_login_post_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.accounts_login_post_with_http_info(user_agent, **kwargs)  # noqa: E501
             return data
 
-    def accounts_login_post_with_http_info(self, **kwargs):  # noqa: E501
+    def accounts_login_post_with_http_info(self, user_agent, **kwargs):  # noqa: E501
         """Login user to Instagram  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.accounts_login_post_with_http_info(async_req=True)
+        >>> thread = api.accounts_login_post_with_http_info(user_agent, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
+        :param str user_agent: the User-Agent used by the Instagram App (be carefull in generation of a new one)  (required)
         :param int ig_sig_key_version:
         :param str signed_body:
         :return: InlineResponse200
@@ -78,7 +80,7 @@ class AuthApi(object):
 
         local_var_params = locals()
 
-        all_params = ['ig_sig_key_version', 'signed_body']  # noqa: E501
+        all_params = ['user_agent', 'ig_sig_key_version', 'signed_body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -92,6 +94,10 @@ class AuthApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'user_agent' is set
+        if ('user_agent' not in local_var_params or
+                local_var_params['user_agent'] is None):
+            raise ApiValueError("Missing the required parameter `user_agent` when calling `accounts_login_post`")  # noqa: E501
 
         collection_formats = {}
 
@@ -100,6 +106,8 @@ class AuthApi(object):
         query_params = []
 
         header_params = {}
+        if 'user_agent' in local_var_params:
+            header_params['User-Agent'] = local_var_params['user_agent']  # noqa: E501
 
         form_params = []
         local_var_files = {}

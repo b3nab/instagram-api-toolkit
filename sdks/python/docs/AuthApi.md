@@ -8,7 +8,7 @@ Method | HTTP request | Description
 
 
 # **accounts_login_post**
-> InlineResponse200 accounts_login_post(ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
+> InlineResponse200 accounts_login_post(user_agent, ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
 
 Login user to Instagram
 
@@ -25,12 +25,13 @@ from pprint import pprint
 
 # create an instance of the API class
 api_instance = private_instagram_sdk.AuthApi()
+user_agent = 'user_agent_example' # str | the User-Agent used by the Instagram App (be carefull in generation of a new one) 
 ig_sig_key_version = 56 # int |  (optional)
 signed_body = 'signed_body_example' # str |  (optional)
 
 try:
     # Login user to Instagram
-    api_response = api_instance.accounts_login_post(ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
+    api_response = api_instance.accounts_login_post(user_agent, ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
     pprint(api_response)
 except ApiException as e:
     print("Exception when calling AuthApi->accounts_login_post: %s\n" % e)
@@ -40,6 +41,7 @@ except ApiException as e:
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **user_agent** | **str**| the User-Agent used by the Instagram App (be carefull in generation of a new one)  | 
  **ig_sig_key_version** | **int**|  | [optional] 
  **signed_body** | **str**|  | [optional] 
 
