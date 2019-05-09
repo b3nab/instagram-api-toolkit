@@ -39,7 +39,64 @@ ua:
     type: string
   required: true
   description: >
-    the password to use for authentication
+    the User-Agent used by the Instagram App (be carefull in generation of a new one)
+accept-language:
+  in: header
+  name: Accept-Language
+  schema:
+    type: string
+  required: true
+  description: >
+    the User-Agent used by the Instagram App (be carefull in generation of a new one)
+ig-connection-speed:
+  in: header
+  name: X-IG-Connection-Speed
+  schema:
+    type: string
+    # format: uuid
+  required: true
+ig-bandwidth-speed-kbps:
+  in: header
+  name: X-IG-Bandwidth-Speed-KBPS
+  schema:
+    type: string
+    # format: uuid
+  required: true
+ig-bandwidth-total-bytes:
+  in: header
+  name: X-IG-Bandwidth-TotalBytes-B
+  schema:
+    type: string
+    # format: uuid
+  required: true
+ig-bandwidth-total-time:
+  in: header
+  name: X-IG-Bandwidth-TotalTime-MS
+  schema:
+    type: string
+    # format: uuid
+  required: true
+ig-connection-type:
+  in: header
+  name: X-IG-Connection-Type
+  schema:
+    type: string
+    # format: uuid
+  required: true
+ig-capabilities:
+  in: header
+  name: X-IG-Capabilities
+  schema:
+    type: string
+    # format: uuid
+  required: true
+ig-app-id:
+  in: header
+  name: X-IG-App-ID
+  schema:
+    type: string
+    # format: uuid
+  required: true
 
 #-----------------
 # Cookie params
