@@ -12,6 +12,8 @@
     - Auth
     summary: Login user to Instagram
     description: Login to Instagram with username/password
+    parameters:
+      - $ref: './parameters.yaml#/ua'
     requestBody:
       $ref: './body.yaml#/authData'
     # security:
