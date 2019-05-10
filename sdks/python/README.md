@@ -51,6 +51,11 @@ import private_instagram_sdk
 from private_instagram_sdk.rest import ApiException
 from pprint import pprint
 
+configuration = private_instagram_sdk.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['csrftoken'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['csrftoken'] = 'Bearer'
 
 # create an instance of the API class
 api_instance = private_instagram_sdk.AuthApi(private_instagram_sdk.ApiClient(configuration))

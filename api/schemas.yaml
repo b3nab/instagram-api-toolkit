@@ -13,6 +13,15 @@ schemas:
         type: string
       error_type:
         type: string
+  JsonObject:
+    type: object
+    properties:
+      message:
+        type: string
+      status:
+        type: string
+      error_type:
+        type: string
   AuthBody:
     type: object
     properties:

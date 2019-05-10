@@ -16,15 +16,21 @@ Login to Instagram with username/password
 
 ### Example
 
+* Api Key Authentication (cookieAuth):
 ```python
 from __future__ import print_function
 import time
 import private_instagram_sdk
 from private_instagram_sdk.rest import ApiException
 from pprint import pprint
+configuration = private_instagram_sdk.Configuration()
+# Configure API key authorization: cookieAuth
+configuration.api_key['csrftoken'] = 'YOUR_API_KEY'
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['csrftoken'] = 'Bearer'
 
 # create an instance of the API class
-api_instance = private_instagram_sdk.AuthApi()
+api_instance = private_instagram_sdk.AuthApi(private_instagram_sdk.ApiClient(configuration))
 user_agent = 'user_agent_example' # str | the User-Agent used by the Instagram App (be carefull in generation of a new one) 
 ig_sig_key_version = 56 # int |  (optional)
 signed_body = 'signed_body_example' # str |  (optional)
@@ -51,7 +57,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[cookieAuth](../README.md#cookieAuth)
 
 ### HTTP request headers
 

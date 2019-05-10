@@ -16,15 +16,15 @@
       - $ref: './parameters.yaml#/ua'
     requestBody:
       $ref: './body.yaml#/authData'
-    # security:
-    #   - cookieAuth: []
+    security:
+      - cookieAuth: []
     responses:
       200:
         description: Successfully login the user
         content:
           application/json:
             schema:
-              $ref: './schemas.yaml#/schemas/User'
+              $ref: './schemas.yaml#/schemas/JsonObj'
       400:
         description: Missing parameters
         content:

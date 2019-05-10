@@ -101,3 +101,59 @@ ig-app-id:
 #-----------------
 # Cookie params
 #-----------------
+ds_user:
+  in: cookie
+  name: ds_user
+  schema:
+    type: string
+    # format: uuid
+  required: true
+ds_user_id:
+  in: cookie
+  name: ds_user_id
+  schema:
+    type: string
+    # format: uuid
+  required: true
+shbts:
+  in: cookie
+  name: shbts
+  schema:
+    type: string
+    # format: uuid
+  required: true
+mid:
+  in: cookie
+  name: mid
+  schema:
+    type: string
+    # format: uuid
+  required: true
+sessionid:
+  in: cookie
+  name: sessionid
+  schema:
+    type: string
+    # format: uuid
+  required: true
+csrftoken:
+  in: cookie
+  name: csrftoken
+  schema:
+    type: string
+    # format: uuid
+  required: true
+shbid:
+  in: cookie
+  name: shbid
+  schema:
+    type: string
+    # format: uuid
+  required: true
+rur:
+  in: cookie
+  name: rur
+  schema:
+    type: string
+    # format: uuid
+  required: true
