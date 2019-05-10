@@ -1,17 +1,70 @@
 import { prompt } from 'enquirer'
 import shell from 'shelljs'
+import chalk from 'chalk'
+import fs from 'fs'
+import path from 'path'
 
 // ---------------------------------------
 // Wizard functions
 // ---------------------------------------
 
+const wizardChoosing = async () => {
+  const response = await prompt({
+    type: 'select',
+    name: 'wizard_selection',
+    message: 'What you want to do?',
+    initial: 0,
+    choices: ['new_config', 'new_generator', 'exit']
+  })
+  // console.log(response)
+  return response.wizard_selection
+}
+
 const new_config = async () => {
+  const configs_dir = './configs/'
   const generators_list = get_generators_list()
   const generators_choices = []
   generators_list.forEach(x => generators_choices.push({name: x, message: x, value: x}) )
   const response = await prompt({
     type: 'select',
     name: 'generator',
+    message: 'What generator you want to use?',
+    initial: 1,
+    choices: generators_choices
+  })
+  // console.log(response)
+  
+  const config_file = path.join(configs_dir, response.generator + '.yaml')
+  const config = create_yaml_config(response.generator)
+  // console.log(config)
+
+  // check if there is already a config with the same name
+  if(!fs.existsSync(config_file)) {
+    // ok, write config
+    fs.writeFileSync(config_file, config)
+  } else {
+    // overwrite file?
+    const overwrite_res = await prompt({
+      type: 'confirm',
+      name: 'answer',
+      'message': `${config_file} already exist. Do you want to overwrite the file?`
+    })
+    
+    console.log(typeof overwrite_res.answer)
+    console.log(overwrite_res.answer)
+    if(overwrite_res.answer) {
+      fs.writeFileSync(config_file, config)
+    }
+  }
+}
+
+const new_generator = async () => {
+  // let name => let outputDir
+  // let package (default)
+  // let type
+  const response = await prompt({
+    type: 'select',
+    name: 'generator-name',
     message: 'What generator you want to use?',
     initial: 1,
     choices: generators_choices
@@ -48,9 +101,14 @@ const create_yaml_config = (generator) => {
   // lines.shift()//.reverse().pop().reverse()
   let yaml_config = ''
   lines.forEach(line => {
-    console.log('line is: ', line)
+    // console.log('line is: ', line)
     if(line) {
-      yaml_config += '#' + line
+      if(line.trim().indexOf(' ') === -1) {
+        // is a single word, use it as a yaml variable
+        yaml_config += line.trim() + ':\n'
+      } else {
+        yaml_config += '# ' + line.trim() + '\n\n'
+      }
     }
   })
   return yaml_config
@@ -80,12 +138,25 @@ const ascii_art_welcome = `
   #############################################################################
 `
 
-const wizard = () => {
+const wizard = async () => {
   console.log(ascii_art_welcome)
   // define all the command that this wizard can do
-  // new config
-  new_config()
-  // new sdk
+  let wizard_choice = await wizardChoosing()
+  console.log('Choise is', chalk.magentaBright(wizard_choice))
+  while(wizard_choice !== 'exit') {
+    switch (wizard_choice) {
+      case 'new_config':
+      await new_config()
+      break;
+      case 'new_generator':
+      await new_generator()
+      break;
+      
+      default:
+      break;
+    }
+    wizard_choice = await wizardChoosing()
+  }
 }
 
 wizard()

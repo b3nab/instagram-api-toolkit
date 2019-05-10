@@ -9,7 +9,7 @@
   "private": true,
   "scripts": {
     "generate": "yarn build-schema && ./tools/auto_generate_sdks.sh",
-    "beta": "node toolkit.build.js",
+    "toolkit": "node toolkit.build.js",
     "build-toolkit": "babel toolkit.js -o toolkit.build.js",
     "viewer": "yarn build-schema && openapi-viewer instagram-api.bundle.json",
     "install-python-sdk": "cd ./sdks/python && python setup.py install",
