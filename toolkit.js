@@ -3,7 +3,6 @@ import shell from 'shelljs'
 import chalk from 'chalk'
 import fs from 'fs'
 import path from 'path'
-import repo from 'github-download-parts'
 
 // ---------------------------------------
 // Wizard functions
@@ -15,10 +14,52 @@ const wizardChoosing = async () => {
     name: 'wizard_selection',
     message: 'What you want to do?',
     initial: 0,
-    choices: ['generate', 'new_config', 'new_generator', 'new_template', 'exit']
+    choices: ['codegen', 'new_codegen_config', 'generate', 'new_config', 'new_generator', 'new_template', 'exit']
   })
   // console.log(response)
   return response.wizard_selection
+}
+
+const codegen = async () => {
+  const configs_dir = './configs/'
+  const generators_list = get_codegen_list()
+  const generators_choices = []
+  generators_list.forEach(x => generators_choices.push({name: x, message: x, value: x}) )
+  const gen = await prompt([
+    {
+      type: 'autocomplete',
+      name: 'generator',
+      message: 'Which generator do you want to use?',
+      initial: 0,
+      choices: generators_choices
+    },
+    {
+      type: 'confirm',
+      name: 'use_template',
+      message: 'Do you want to use a custom template?'
+    }
+  ])
+  // console.log(gen)
+
+  let template = ''
+
+  if(gen.use_template) {
+    const templates_choices = get_templates_list()
+    const select_template = await prompt({
+      type: 'select',
+      name: 'template',
+      message: 'Which template do you want to use?',
+      choices: templates_choices
+    })
+    template = '-t ./' + select_template.template
+  }
+
+  const codegen_generator = gen.generator.split('/').pop().split('.').shift()
+  // const cmd = `cg ${gen.generator} -o ./sdks/${gen.generator.split('/').pop().split('.')[0]} ${template} instagram-api.bundle.json`
+  const cmd = `cg --verbose generators/${codegen_generator} -o sdks ${template} instagram-api.bundle.json`
+  // console.log('command to run...\n\n', cmd, '\n\n')
+  const generate_cmd = run_cmd(cmd)
+  console.log(generate_cmd)
 }
 
 const generate = async () => {
@@ -52,13 +93,69 @@ const generate = async () => {
       message: 'Which template do you want to use?',
       choices: templates_choices
     })
-    template = '-t ' + select_template.template
+    template = '-t ./' + select_template.template
   }
 
-  const cmd = `openapi-generator generate -i instagram-api.bundle.json -g ${gen.generator} -o sdks/${gen.generator} --config configs/${gen.generator}.yaml ${template} --skip-validate-spec`
+  const cmd = `openapi-generator generate -i instagram-api.bundle.json -g ${gen.generator} -o ./sdks/${gen.generator} --config ./configs/${gen.generator}.yaml ${template} --skip-validate-spec`
   console.log('command to run...\n\n', cmd, '\n\n')
   const generate_cmd = run_cmd(cmd)
   console.log(generate_cmd)
+}
+
+const new_codegen_config = async () => {
+  const configs_dir = './generators/'
+  const confs_list = github_list('Mermade', 'openapi-codegen', 'configs')
+  const configs_coice = []
+  confs_list.forEach(x => configs_coice.push({name: x, message: x, value: x}) )
+  const response = await prompt([
+    {
+      type: 'autocomplete',
+      name: 'codegen_config',
+      message: 'What codegen config you want to use?',
+      initial: 0,
+      choices: configs_coice
+    },
+    {
+      type: 'confirm',
+      name: 'overwrite_name',
+      message: 'Do you want to change the default name?',
+    }
+  ])
+  // console.log(response)
+  let config_name = null
+  if(response.overwrite_name) {
+    codegen_res = await prompt({
+      type: 'input',
+      name: 'name',
+      message: 'Write the new config name:',
+    })
+    config_name = codegen_res.name
+  }
+
+  const config_file = path.join(configs_dir, response.codegen_config)
+  
+  // check if there is already a config with the same name
+  if(!fs.existsSync(config_file)) {
+    // ok, write config
+    create_codegen_config(response.codegen_config, config_name)
+  } else {
+    // overwrite file?
+    const overwrite_res = await prompt({
+      type: 'confirm',
+      name: 'answer',
+      'message': `${config_file} already exist. Do you want to overwrite the file?`,
+      // default: '(Y/n)'
+      initial: true
+    })
+    
+    // console.log(typeof overwrite_res.answer)
+    // console.log(overwrite_res.answer)
+    if(overwrite_res.answer) {
+      console.log(chalk.bgYellow(chalk.black(`Overwriting ${config_file}...`)))
+      create_codegen_config(response.codegen_config, config_name, true)
+    }
+  }
+  // console.log(config)
 }
 
 const new_config = async () => {
@@ -148,7 +245,18 @@ const new_template = async () => {
 // ---------------------------------------
 
 const run_cmd = (cmd) => {
+  console.log(chalk.bgWhite(chalk.black('Bash command: ', cmd)))
   return shell.exec(cmd, { silent: true }).stdout
+}
+
+const github_download = (username, repo, path, to, isFile=false, forceDownload=false) => {
+  const svn_cmd = isFile ? 'export' : 'checkout'
+  const force = forceDownload ? '--force' : ''
+  return run_cmd(`svn ${svn_cmd} https://github.com/${username}/${repo}/trunk/${path} ${to} ${force}`)
+}
+
+const github_list = (username, repo, path) => {
+  return run_cmd(`svn list https://github.com/${username}/${repo}/trunk/${path}`).split('\n')
 }
 
 const get_generators_list = () => {
@@ -165,12 +273,20 @@ const get_generators_list = () => {
   return return_list
 }
 
-const isDir = src => fs.lstatSync(src).isDirectory()
+const get_list = (pathName, filter=null) => {
+  return fs.readdirSync(pathName)
+    .map(name => path.join(pathName, name))
+    .filter(filter)
+}
 
+const isDir = src => fs.lstatSync(src).isDirectory()
+const isFile = src => fs.lstatSync(src).isFile()
+
+const get_codegen_list = () => {
+  return get_list('./generators', isFile)
+}
 const get_templates_list = () => {
-  return fs.readdirSync('./templates')
-    .map(name => path.join('./templates', name))
-    .filter(isDir)
+  return get_list('./templates', isDir)
 }
 
 const create_yaml_config = (generator) => {
@@ -198,16 +314,13 @@ const create_meta_generator = (name, other_opts='') => {
 }
 
 const create_template = (fromGenerator, name) => {
-  // const create_new_gen = run_cmd(`openapi-generator -n ${name} -o ./generators/${name} ${other_opts}`)
-  const clone_template = run_cmd(`svn checkout https://github.com/OpenAPITools/openapi-generator/trunk/modules/openapi-generator/src/main/resources/${fromGenerator} templates/${name}`)
+  const clone_template = github_download('OpenAPITools', 'openapi-generator', `modules/openapi-generator/src/main/resources/${fromGenerator}`, `templates/${name}`)
   console.log(`Creating template from ${fromGenerator} with name ${name}...\n`, clone_template)
-  // repo('OpenAPITools/openapi-generator', `templates/${name}`, `modules/openapi-generator/src/main/resources/${fromGenerator}`)
-  //   .then(() => {
-  //     console.log('success!')
-  //   })
-  //   .catch((e) => {
-  //     console.log('error creating the template', e)
-  //   })
+}
+
+const create_codegen_config = (fromConfig, name=null, force=false) => {
+  const clone_template = github_download('Mermade', 'openapi-codegen', `configs/${fromConfig}`, `generators/${name || fromConfig}`, true, force)
+  console.log(`Creating codegen file config ${name || fromConfig}\n`, clone_template)
 }
 
 
@@ -241,21 +354,24 @@ const wizard = async () => {
   console.log('Choise is', chalk.magentaBright(wizard_choice))
   while(wizard_choice !== 'exit') {
     switch (wizard_choice) {
+      case 'codegen':
+        await codegen()
+        break
+      case 'new_codegen_config':
+        await new_codegen_config()
+        break
       case 'generate':
-      await generate()
-      break;
+        await generate()
+        break
       case 'new_config':
-      await new_config()
-      break;
+        await new_config()
+        break
       case 'new_generator':
-      await new_generator()
-      break;
+        await new_generator()
+        break
       case 'new_template':
-      await new_template()
-      break;
-      
-      default:
-      break;
+        await new_template()
+        break
     }
     wizard_choice = await wizardChoosing()
   }

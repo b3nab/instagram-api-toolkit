@@ -54,8 +54,6 @@ var _fs = _interopRequireDefault(require("fs"));
 
 var _path = _interopRequireDefault(require("path"));
 
-var _githubDownloadParts = _interopRequireDefault(require("github-download-parts"));
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -84,7 +82,7 @@ function () {
               name: 'wizard_selection',
               message: 'What you want to do?',
               initial: 0,
-              choices: ['generate', 'new_config', 'new_generator', 'new_template', 'exit']
+              choices: ['codegen', 'new_codegen_config', 'generate', 'new_config', 'new_generator', 'new_template', 'exit']
             });
 
           case 2:
@@ -104,19 +102,19 @@ function () {
   };
 }();
 
-var generate =
+var codegen =
 /*#__PURE__*/
 function () {
   var _ref2 = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee2() {
-    var configs_dir, generators_list, generators_choices, gen, template, templates_choices, select_template, cmd, generate_cmd;
+    var configs_dir, generators_list, generators_choices, gen, template, templates_choices, select_template, codegen_generator, cmd, generate_cmd;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
           case 0:
             configs_dir = './configs/';
-            generators_list = get_generators_list();
+            generators_list = get_codegen_list();
             generators_choices = [];
             generators_list.forEach(function (x) {
               return generators_choices.push({
@@ -159,11 +157,13 @@ function () {
 
           case 12:
             select_template = _context2.sent;
-            template = '-t ' + select_template.template;
+            template = '-t ./' + select_template.template;
 
           case 14:
-            cmd = "openapi-generator generate -i instagram-api.bundle.json -g ".concat(gen.generator, " -o sdks/").concat(gen.generator, " --config configs/").concat(gen.generator, ".yaml ").concat(template, " --skip-validate-spec");
-            console.log('command to run...\n\n', cmd, '\n\n');
+            codegen_generator = gen.generator.split('/').pop().split('.').shift(); // const cmd = `cg ${gen.generator} -o ./sdks/${gen.generator.split('/').pop().split('.')[0]} ${template} instagram-api.bundle.json`
+
+            cmd = "cg --verbose generators/".concat(codegen_generator, " -o sdks ").concat(template, " instagram-api.bundle.json"); // console.log('command to run...\n\n', cmd, '\n\n')
+
             generate_cmd = run_cmd(cmd);
             console.log(generate_cmd);
 
@@ -175,18 +175,18 @@ function () {
     }, _callee2);
   }));
 
-  return function generate() {
+  return function codegen() {
     return _ref2.apply(this, arguments);
   };
 }();
 
-var new_config =
+var generate =
 /*#__PURE__*/
 function () {
   var _ref3 = _asyncToGenerator(
   /*#__PURE__*/
   regeneratorRuntime.mark(function _callee3() {
-    var configs_dir, generators_list, generators_choices, response, config_file, config, overwrite_res;
+    var configs_dir, generators_list, generators_choices, gen, template, templates_choices, select_template, cmd, generate_cmd;
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -202,6 +202,183 @@ function () {
               });
             });
             _context3.next = 6;
+            return (0, _enquirer.prompt)([{
+              type: 'autocomplete',
+              name: 'generator',
+              message: 'Which generator do you want to use?',
+              initial: 0,
+              choices: generators_choices
+            }, {
+              type: 'confirm',
+              name: 'use_template',
+              message: 'Do you want to use a custom template?'
+            }]);
+
+          case 6:
+            gen = _context3.sent;
+            // console.log(gen)
+            template = '';
+
+            if (!gen.use_template) {
+              _context3.next = 14;
+              break;
+            }
+
+            templates_choices = get_templates_list();
+            _context3.next = 12;
+            return (0, _enquirer.prompt)({
+              type: 'select',
+              name: 'template',
+              message: 'Which template do you want to use?',
+              choices: templates_choices
+            });
+
+          case 12:
+            select_template = _context3.sent;
+            template = '-t ./' + select_template.template;
+
+          case 14:
+            cmd = "openapi-generator generate -i instagram-api.bundle.json -g ".concat(gen.generator, " -o ./sdks/").concat(gen.generator, " --config ./configs/").concat(gen.generator, ".yaml ").concat(template, " --skip-validate-spec");
+            console.log('command to run...\n\n', cmd, '\n\n');
+            generate_cmd = run_cmd(cmd);
+            console.log(generate_cmd);
+
+          case 18:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3);
+  }));
+
+  return function generate() {
+    return _ref3.apply(this, arguments);
+  };
+}();
+
+var new_codegen_config =
+/*#__PURE__*/
+function () {
+  var _ref4 = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee4() {
+    var configs_dir, confs_list, configs_coice, response, config_name, config_file, overwrite_res;
+    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+      while (1) {
+        switch (_context4.prev = _context4.next) {
+          case 0:
+            configs_dir = './generators/';
+            confs_list = github_list('Mermade', 'openapi-codegen', 'configs');
+            configs_coice = [];
+            confs_list.forEach(function (x) {
+              return configs_coice.push({
+                name: x,
+                message: x,
+                value: x
+              });
+            });
+            _context4.next = 6;
+            return (0, _enquirer.prompt)([{
+              type: 'autocomplete',
+              name: 'codegen_config',
+              message: 'What codegen config you want to use?',
+              initial: 0,
+              choices: configs_coice
+            }, {
+              type: 'confirm',
+              name: 'overwrite_name',
+              message: 'Do you want to change the default name?'
+            }]);
+
+          case 6:
+            response = _context4.sent;
+            // console.log(response)
+            config_name = null;
+
+            if (!response.overwrite_name) {
+              _context4.next = 13;
+              break;
+            }
+
+            _context4.next = 11;
+            return (0, _enquirer.prompt)({
+              type: 'input',
+              name: 'name',
+              message: 'Write the new config name:'
+            });
+
+          case 11:
+            codegen_res = _context4.sent;
+            config_name = codegen_res.name;
+
+          case 13:
+            config_file = _path["default"].join(configs_dir, response.codegen_config); // check if there is already a config with the same name
+
+            if (_fs["default"].existsSync(config_file)) {
+              _context4.next = 18;
+              break;
+            }
+
+            // ok, write config
+            create_codegen_config(response.codegen_config, config_name);
+            _context4.next = 22;
+            break;
+
+          case 18:
+            _context4.next = 20;
+            return (0, _enquirer.prompt)({
+              type: 'confirm',
+              name: 'answer',
+              'message': "".concat(config_file, " already exist. Do you want to overwrite the file?"),
+              // default: '(Y/n)'
+              initial: true
+            });
+
+          case 20:
+            overwrite_res = _context4.sent;
+
+            // console.log(typeof overwrite_res.answer)
+            // console.log(overwrite_res.answer)
+            if (overwrite_res.answer) {
+              console.log(_chalk["default"].bgYellow(_chalk["default"].black("Overwriting ".concat(config_file, "..."))));
+              create_codegen_config(response.codegen_config, config_name, true);
+            }
+
+          case 22:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function new_codegen_config() {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+var new_config =
+/*#__PURE__*/
+function () {
+  var _ref5 = _asyncToGenerator(
+  /*#__PURE__*/
+  regeneratorRuntime.mark(function _callee5() {
+    var configs_dir, generators_list, generators_choices, response, config_file, config, overwrite_res;
+    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            configs_dir = './configs/';
+            generators_list = get_generators_list();
+            generators_choices = [];
+            generators_list.forEach(function (x) {
+              return generators_choices.push({
+                name: x,
+                message: x,
+                value: x
+              });
+            });
+            _context5.next = 6;
             return (0, _enquirer.prompt)({
               type: 'select',
               name: 'generator',
@@ -211,25 +388,25 @@ function () {
             });
 
           case 6:
-            response = _context3.sent;
+            response = _context5.sent;
             // console.log(response)
             config_file = _path["default"].join(configs_dir, response.generator + '.yaml');
             config = create_yaml_config(response.generator); // console.log(config)
             // check if there is already a config with the same name
 
             if (_fs["default"].existsSync(config_file)) {
-              _context3.next = 13;
+              _context5.next = 13;
               break;
             }
 
             // ok, write config
             _fs["default"].writeFileSync(config_file, config);
 
-            _context3.next = 19;
+            _context5.next = 19;
             break;
 
           case 13:
-            _context3.next = 15;
+            _context5.next = 15;
             return (0, _enquirer.prompt)({
               type: 'confirm',
               name: 'answer',
@@ -237,7 +414,7 @@ function () {
             });
 
           case 15:
-            overwrite_res = _context3.sent;
+            overwrite_res = _context5.sent;
             console.log(_typeof(overwrite_res.answer));
             console.log(overwrite_res.answer);
 
@@ -247,29 +424,29 @@ function () {
 
           case 19:
           case "end":
-            return _context3.stop();
+            return _context5.stop();
         }
       }
-    }, _callee3);
+    }, _callee5);
   }));
 
   return function new_config() {
-    return _ref3.apply(this, arguments);
+    return _ref5.apply(this, arguments);
   };
 }();
 
 var new_generator =
 /*#__PURE__*/
 function () {
-  var _ref4 = _asyncToGenerator(
+  var _ref6 = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee4() {
+  regeneratorRuntime.mark(function _callee6() {
     var response;
-    return regeneratorRuntime.wrap(function _callee4$(_context4) {
+    return regeneratorRuntime.wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context4.prev = _context4.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
-            _context4.next = 2;
+            _context6.next = 2;
             return (0, _enquirer.prompt)([{
               type: 'input',
               name: 'name',
@@ -281,33 +458,33 @@ function () {
             }]);
 
           case 2:
-            response = _context4.sent;
+            response = _context6.sent;
             console.log(response);
             create_meta_generator(response.name, response.meta);
 
           case 5:
           case "end":
-            return _context4.stop();
+            return _context6.stop();
         }
       }
-    }, _callee4);
+    }, _callee6);
   }));
 
   return function new_generator() {
-    return _ref4.apply(this, arguments);
+    return _ref6.apply(this, arguments);
   };
 }();
 
 var new_template =
 /*#__PURE__*/
 function () {
-  var _ref5 = _asyncToGenerator(
+  var _ref7 = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee5() {
+  regeneratorRuntime.mark(function _callee7() {
     var generators_list, generators_choices, response;
-    return regeneratorRuntime.wrap(function _callee5$(_context5) {
+    return regeneratorRuntime.wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
             generators_list = get_generators_list();
             generators_choices = [];
@@ -318,7 +495,7 @@ function () {
                 value: x
               });
             });
-            _context5.next = 5;
+            _context7.next = 5;
             return (0, _enquirer.prompt)([{
               type: 'select',
               name: 'generator',
@@ -332,20 +509,20 @@ function () {
             }]);
 
           case 5:
-            response = _context5.sent;
+            response = _context7.sent;
             console.log(response);
             create_template(response.generator, response.name);
 
           case 8:
           case "end":
-            return _context5.stop();
+            return _context7.stop();
         }
       }
-    }, _callee5);
+    }, _callee7);
   }));
 
   return function new_template() {
-    return _ref5.apply(this, arguments);
+    return _ref7.apply(this, arguments);
   };
 }(); // ---------------------------------------
 // helper functions
@@ -353,9 +530,22 @@ function () {
 
 
 var run_cmd = function run_cmd(cmd) {
+  console.log(_chalk["default"].bgWhite(_chalk["default"].black('Bash command: ', cmd)));
   return _shelljs["default"].exec(cmd, {
     silent: true
   }).stdout;
+};
+
+var github_download = function github_download(username, repo, path, to) {
+  var isFile = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+  var forceDownload = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : false;
+  var svn_cmd = isFile ? 'export' : 'checkout';
+  var force = forceDownload ? '--force' : '';
+  return run_cmd("svn ".concat(svn_cmd, " https://github.com/").concat(username, "/").concat(repo, "/trunk/").concat(path, " ").concat(to, " ").concat(force));
+};
+
+var github_list = function github_list(username, repo, path) {
+  return run_cmd("svn list https://github.com/".concat(username, "/").concat(repo, "/trunk/").concat(path)).split('\n');
 };
 
 var get_generators_list = function get_generators_list() {
@@ -372,14 +562,27 @@ var get_generators_list = function get_generators_list() {
   return return_list;
 };
 
+var get_list = function get_list(pathName) {
+  var filter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  return _fs["default"].readdirSync(pathName).map(function (name) {
+    return _path["default"].join(pathName, name);
+  }).filter(filter);
+};
+
 var isDir = function isDir(src) {
   return _fs["default"].lstatSync(src).isDirectory();
 };
 
+var isFile = function isFile(src) {
+  return _fs["default"].lstatSync(src).isFile();
+};
+
+var get_codegen_list = function get_codegen_list() {
+  return get_list('./generators', isFile);
+};
+
 var get_templates_list = function get_templates_list() {
-  return _fs["default"].readdirSync('./templates').map(function (name) {
-    return _path["default"].join('./templates', name);
-  }).filter(isDir);
+  return get_list('./templates', isDir);
 };
 
 var create_yaml_config = function create_yaml_config(generator) {
@@ -408,15 +611,15 @@ var create_meta_generator = function create_meta_generator(name) {
 };
 
 var create_template = function create_template(fromGenerator, name) {
-  // const create_new_gen = run_cmd(`openapi-generator -n ${name} -o ./generators/${name} ${other_opts}`)
-  var clone_template = run_cmd("svn checkout https://github.com/OpenAPITools/openapi-generator/trunk/modules/openapi-generator/src/main/resources/".concat(fromGenerator, " templates/").concat(name));
-  console.log("Creating template from ".concat(fromGenerator, " with name ").concat(name, "...\n"), clone_template); // repo('OpenAPITools/openapi-generator', `templates/${name}`, `modules/openapi-generator/src/main/resources/${fromGenerator}`)
-  //   .then(() => {
-  //     console.log('success!')
-  //   })
-  //   .catch((e) => {
-  //     console.log('error creating the template', e)
-  //   })
+  var clone_template = github_download('OpenAPITools', 'openapi-generator', "modules/openapi-generator/src/main/resources/".concat(fromGenerator), "templates/".concat(name));
+  console.log("Creating template from ".concat(fromGenerator, " with name ").concat(name, "...\n"), clone_template);
+};
+
+var create_codegen_config = function create_codegen_config(fromConfig) {
+  var name = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+  var force = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+  var clone_template = github_download('Mermade', 'openapi-codegen', "configs/".concat(fromConfig), "generators/".concat(name || fromConfig), true, force);
+  console.log("Creating codegen file config ".concat(name || fromConfig, "\n"), clone_template);
 }; // ---------------------------------------
 // ############     WIZARD     ###########
 // ---------------------------------------
@@ -427,83 +630,94 @@ var ascii_art_welcome = "\n                            __  . .* ,\n             
 var wizard =
 /*#__PURE__*/
 function () {
-  var _ref6 = _asyncToGenerator(
+  var _ref8 = _asyncToGenerator(
   /*#__PURE__*/
-  regeneratorRuntime.mark(function _callee6() {
+  regeneratorRuntime.mark(function _callee8() {
     var wizard_choice;
-    return regeneratorRuntime.wrap(function _callee6$(_context6) {
+    return regeneratorRuntime.wrap(function _callee8$(_context8) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context8.prev = _context8.next) {
           case 0:
             console.log(ascii_art_welcome); // define all the command that this wizard can do
 
-            _context6.next = 3;
+            _context8.next = 3;
             return wizardChoosing();
 
           case 3:
-            wizard_choice = _context6.sent;
+            wizard_choice = _context8.sent;
             console.log('Choise is', _chalk["default"].magentaBright(wizard_choice));
 
           case 5:
             if (!(wizard_choice !== 'exit')) {
-              _context6.next = 27;
+              _context8.next = 32;
               break;
             }
 
-            _context6.t0 = wizard_choice;
-            _context6.next = _context6.t0 === 'generate' ? 9 : _context6.t0 === 'new_config' ? 12 : _context6.t0 === 'new_generator' ? 15 : _context6.t0 === 'new_template' ? 18 : 21;
+            _context8.t0 = wizard_choice;
+            _context8.next = _context8.t0 === 'codegen' ? 9 : _context8.t0 === 'new_codegen_config' ? 12 : _context8.t0 === 'generate' ? 15 : _context8.t0 === 'new_config' ? 18 : _context8.t0 === 'new_generator' ? 21 : _context8.t0 === 'new_template' ? 24 : 27;
             break;
 
           case 9:
-            _context6.next = 11;
-            return generate();
+            _context8.next = 11;
+            return codegen();
 
           case 11:
-            return _context6.abrupt("break", 22);
+            return _context8.abrupt("break", 27);
 
           case 12:
-            _context6.next = 14;
-            return new_config();
+            _context8.next = 14;
+            return new_codegen_config();
 
           case 14:
-            return _context6.abrupt("break", 22);
+            return _context8.abrupt("break", 27);
 
           case 15:
-            _context6.next = 17;
-            return new_generator();
+            _context8.next = 17;
+            return generate();
 
           case 17:
-            return _context6.abrupt("break", 22);
+            return _context8.abrupt("break", 27);
 
           case 18:
-            _context6.next = 20;
-            return new_template();
+            _context8.next = 20;
+            return new_config();
 
           case 20:
-            return _context6.abrupt("break", 22);
+            return _context8.abrupt("break", 27);
 
           case 21:
-            return _context6.abrupt("break", 22);
+            _context8.next = 23;
+            return new_generator();
 
-          case 22:
-            _context6.next = 24;
-            return wizardChoosing();
+          case 23:
+            return _context8.abrupt("break", 27);
 
           case 24:
-            wizard_choice = _context6.sent;
-            _context6.next = 5;
-            break;
+            _context8.next = 26;
+            return new_template();
+
+          case 26:
+            return _context8.abrupt("break", 27);
 
           case 27:
+            _context8.next = 29;
+            return wizardChoosing();
+
+          case 29:
+            wizard_choice = _context8.sent;
+            _context8.next = 5;
+            break;
+
+          case 32:
           case "end":
-            return _context6.stop();
+            return _context8.stop();
         }
       }
-    }, _callee6);
+    }, _callee8);
   }));
 
   return function wizard() {
-    return _ref6.apply(this, arguments);
+    return _ref8.apply(this, arguments);
   };
 }();
 
