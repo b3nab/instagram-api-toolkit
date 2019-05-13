@@ -1,0 +1,58 @@
+{
+  "name": "Python",
+  "type": "client",
+  "defaults": {
+    "packageName": "private_instagram_sdk",
+    "package": "private_instagram_sdk",
+    "packageVersion": "1.0.0",
+    "packageUrl": "https://github.com/instagrambot/instagram-api-toolkit",
+    "baseNamespace": "private_instagram_sdk",
+    "generatorPackage": "private_instagram_sdk",
+    "invokerPackage": "private_instagram_sdk",
+    "importPath": "private_instagram_sdk",
+    "apiPackage": "private_instagram_sdk.api",
+    "pythonPackageName":"private_instagram_sdk",
+    "modelPackage": "private_instagram_sdk.model",
+    "clientPackage": "private_instagram_sdk.api_client",
+    "modelNaming": "PascalCase",
+    "modelPropertyNaming": "snake_case",
+    "imports": []
+  },
+  "directories": [
+    "private_instagram_sdk",
+    "private_instagram_sdk/models",
+    "private_instagram_sdk/api",
+    "test",
+    "docs"
+  ],
+  "partials": {
+    "partial_header": "partial_header.mustache"
+  },
+  "transformations": [
+    { "input": "travis.mustache", "output": ".travis.yml" },
+    { "input": "rest.mustache", "output": "private_instagram_sdk/rest.py" },
+    { "input": "setup.mustache", "output": "setup.py" },
+    { "input": "configuration.mustache", "output": "private_instagram_sdk/configuration.py" },
+    { "input": "api_client.mustache", "output": "private_instagram_sdk/api_client.py" },
+    { "input": "api_test.mustache", "output": "api_test.py" },
+    { "input": "README.mustache", "output": "README.md" },
+    { "input": "requirements.mustache", "output": "requirements.txt" },
+    { "input": "test-requirements.mustache", "output": "test-requirements.txt" },
+    { "input": "tox.mustache", "output": "tox.ini" },
+    { "input": "git_push.sh.mustache", "output": "git_push.sh" },
+    { "input": "gitignore.mustache", "output": ".gitignore" },
+    { "input": "__init__api.mustache", "output": "private_instagram_sdk/api/__init__.py" },
+    { "input": "__init__test.mustache", "output": "test/__init__.py" },
+    { "input": "__init__model.mustache", "output": "private_instagram_sdk/models/__init__.py" },
+    { "input": "__init__package.mustache", "output": "private_instagram_sdk/__init__.py" }
+  ],
+  "perApi":[
+    { "input": "api_doc.mustache", "output": "docs/{{name}}Api.md" },
+    { "input": "api.mustache", "output": "private_instagram_sdk/api/{{name}}_api.py" }
+  ],
+  "perModel": [
+    { "input": "model.mustache", "output": "private_instagram_sdk/models/{{#models}}{{#model}}{{name}}{{/model}}{{/models}}.py" },
+    { "input": "model_test.mustache", "output": "test/test_{{#models}}{{#model}}{{name}}{{/model}}{{/models}}.py" },
+    { "input": "model_doc.mustache", "output": "docs/{{#models}}{{#model}}{{name}}{{/model}}{{/models}}.md" }
+  ]
+}
