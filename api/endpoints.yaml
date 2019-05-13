@@ -6,7 +6,7 @@
 
 # ACCOUNTS endpoints
 
-/accounts/login:
+/accounts/login/:
   post:
     tags: 
     - Auth
@@ -24,7 +24,7 @@
         content:
           application/json:
             schema:
-              $ref: './schemas.yaml#/schemas/JsonObj'
+              $ref: './schemas.yaml#/schemas/JsonObject'
       400:
         description: Missing parameters
         content:
@@ -47,7 +47,7 @@
 
 # USERS endpoints
 
-/users/self:
+/users/self/:
   get:
     tags:
     - User
