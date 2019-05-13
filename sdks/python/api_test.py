@@ -1,6 +1,5 @@
 # coding: utf-8
 
-# flake8: noqa
 """
     Instagram API
 
@@ -12,8 +11,13 @@
 
 from __future__ import absolute_import
 
-# import models into model package
-from User.clsUser import User
-from Error.clsError import Error
-from JsonObject.clsJsonObject import JsonObject
-from AuthBody.clsAuthBody import AuthBody
+import unittest
+
+import private_instagram_sdk
+from private_instagram_sdk.api.default import instagram_api  # noqa: E501
+from private_instagram_sdk.rest import ApiException
+
+
+class 
+if __name__ == '__main__':
+    unittest.main()

@@ -1,14 +1,13 @@
 # private_instagram_sdk.AuthApi
 
-All URIs are relative to *https://i.instagram.com/api/v1*
+All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**accounts_login_post**](AuthApi.md#accounts_login_post) | **POST** /accounts/login | Login user to Instagram
+[**login**](AuthApi.md#login) | **POST** /accounts/login/ | Login user to Instagram
 
-
-# **accounts_login_post**
-> InlineResponse200 accounts_login_post(user_agent, ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
+# **login**
+> object login(User-Agent, body)
 
 Login user to Instagram
 
@@ -17,43 +16,17 @@ Login to Instagram with username/password
 ### Example
 
 * Api Key Authentication (cookieAuth):
-```python
-from __future__ import print_function
-import time
-import private_instagram_sdk
-from private_instagram_sdk.rest import ApiException
-from pprint import pprint
-configuration = private_instagram_sdk.Configuration()
-# Configure API key authorization: cookieAuth
-configuration.api_key['csrftoken'] = 'YOUR_API_KEY'
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['csrftoken'] = 'Bearer'
-
-# create an instance of the API class
-api_instance = private_instagram_sdk.AuthApi(private_instagram_sdk.ApiClient(configuration))
-user_agent = 'user_agent_example' # str | the User-Agent used by the Instagram App (be carefull in generation of a new one) 
-ig_sig_key_version = 56 # int |  (optional)
-signed_body = 'signed_body_example' # str |  (optional)
-
-try:
-    # Login user to Instagram
-    api_response = api_instance.accounts_login_post(user_agent, ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthApi->accounts_login_post: %s\n" % e)
-```
-
 ### Parameters
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user_agent** | **str**| the User-Agent used by the Instagram App (be carefull in generation of a new one)  | 
- **ig_sig_key_version** | **int**|  | [optional] 
- **signed_body** | **str**|  | [optional] 
+ **User-Agent** | **string**| the User-Agent used by the Instagram App (be carefull in generation of a new one)
+ | 
+ **body** | [**object**](object.md)| Optional description in *Markdown* | 
 
 ### Return type
 
-[**InlineResponse200**](InlineResponse200.md)
+**object**
 
 ### Authorization
 
@@ -62,7 +35,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: application/x-www-form-urlencoded
- - **Accept**: application/json
+ - **Accept**: application/json, application/json, application/json
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
