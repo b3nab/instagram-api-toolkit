@@ -35,18 +35,16 @@ class AuthApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def login(self, User-Agent, body, **kwargs):  # noqa: E501
+    def login(self, body, **kwargs):  # noqa: E501
         """  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.login(User-Agent, body, async_req=True)
+        >>> thread = api.login(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param string User-Agent: the User-Agent used by the Instagram App (be carefull in generation of a new one)
- (required)
         :param object body: Optional description in *Markdown* (required)
         :return: object
                  If the method is called asynchronously,
@@ -54,23 +52,21 @@ class AuthApi(object):
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.login_with_http_info(User-Agent, body, **kwargs)  # noqa: E501
+            return self.login_with_http_info(body, **kwargs)  # noqa: E501
         else:
-            (data) = self.login_with_http_info(User-Agent, body, **kwargs)  # noqa: E501
+            (data) = self.login_with_http_info(body, **kwargs)  # noqa: E501
             return data
 
-    def login_with_http_info(self, User-Agent, body, **kwargs):  # noqa: E501
+    def login_with_http_info(self, body, **kwargs):  # noqa: E501
         """  # noqa: E501
 
         Login to Instagram with username/password  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.login_with_http_info(User-Agent, body, async_req=True)
+        >>> thread = api.login_with_http_info(body, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
-        :param string User-Agent: the User-Agent used by the Instagram App (be carefull in generation of a new one)
- (required)
         :param object body: Optional description in *Markdown* (required)
         :return: object
                  If the method is called asynchronously,
@@ -79,7 +75,7 @@ class AuthApi(object):
 
         local_var_params = locals()
 
-        all_params = ['User-Agent', 'body']  # noqa: E501
+        all_params = ['body']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -93,10 +89,6 @@ class AuthApi(object):
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
-        # verify the required parameter 'User-Agent' is set
-        if ('User-Agent' not in local_var_params or
-                local_var_params['User-Agent'] is None):
-            raise ApiValueError("Missing the required parameter `User-Agent` when calling `login`")  # noqa: E501
         # verify the required parameter 'body' is set
         if ('body' not in local_var_params or
                 local_var_params['body'] is None):
@@ -109,8 +101,6 @@ class AuthApi(object):
         query_params = []
 
         header_params = {}
-        if 'User-Agent' in local_var_params:
-            header_params['User-Agent'] = local_var_params['User-Agent']  # noqa: E501
 
         form_params = []
         local_var_files = {}

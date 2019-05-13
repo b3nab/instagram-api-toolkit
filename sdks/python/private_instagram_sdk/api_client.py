@@ -22,7 +22,7 @@ import six
 from six.moves.urllib.parse import quote
 
 from private_instagram_sdk.configuration import Configuration
-import private_instagram_sdk.model
+import private_instagram_sdk.models
 from private_instagram_sdk import rest
 from private_instagram_sdk.exceptions import ApiValueError
 
@@ -237,18 +237,21 @@ class ApiClient(object):
 
         :return: deserialized object.
         """
-        # handle file downloading
-        # save response body into a tmp file and return the instance
-        if response_type == "file":
-            return self.__deserialize_file(response)
 
-        # fetch data from response object
-        try:
-            data = json.loads(response.data)
-        except ValueError:
-            data = response.data
+        return response
 
-        return self.__deserialize(data, response_type)
+        ## handle file downloading
+        ## save response body into a tmp file and return the instance
+        #if response_type == "file":
+        #    return self.__deserialize_file(response)
+
+        ## fetch data from response object
+        #try:
+        #    data = json.loads(response.data)
+        #except ValueError:
+        #    data = response.data
+
+        #return self.__deserialize(data, response_type)
 
     def __deserialize(self, data, klass):
         """Deserializes dict, list, str into an object.
@@ -276,7 +279,7 @@ class ApiClient(object):
             if klass in self.NATIVE_TYPES_MAPPING:
                 klass = self.NATIVE_TYPES_MAPPING[klass]
             else:
-                klass = getattr(private_instagram_sdk.model, klass)
+                klass = getattr(private_instagram_sdk.models, klass)
 
         if klass in self.PRIMITIVE_TYPES:
             return self.__deserialize_primitive(data, klass)

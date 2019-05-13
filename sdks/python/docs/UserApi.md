@@ -4,10 +4,10 @@ All URIs are relative to */api/v1*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**me**](UserApi.md#me) | **GET** /users/self/ | User Profile
+[**getUser**](UserApi.md#getUser) | **GET** /users/{user_id}/info/ | User Profile
 
-# **me**
-> object me()
+# **getUser**
+> object getUser(user_id)
 
 User Profile
 
@@ -16,7 +16,11 @@ The User Profile endpoint returns information about the Instagram user that has 
 ### Example
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user_id** | **integer**| the user id (or the logged_in_user.pk in login() response)
+ | 
 
 ### Return type
 

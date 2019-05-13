@@ -35,37 +35,41 @@ class UserApi(object):
             api_client = ApiClient()
         self.api_client = api_client
 
-    def me(self, **kwargs):  # noqa: E501
+    def getUser(self, user_id, **kwargs):  # noqa: E501
         """  # noqa: E501
 
         The User Profile endpoint returns information about the Instagram user that has authorized with the application.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.me(async_req=True)
+        >>> thread = api.getUser(user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
+        :param integer user_id: the user id (or the logged_in_user.pk in login() response)
+ (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
         """
         kwargs['_return_http_data_only'] = True
         if kwargs.get('async_req'):
-            return self.me_with_http_info(**kwargs)  # noqa: E501
+            return self.getUser_with_http_info(user_id, **kwargs)  # noqa: E501
         else:
-            (data) = self.me_with_http_info(**kwargs)  # noqa: E501
+            (data) = self.getUser_with_http_info(user_id, **kwargs)  # noqa: E501
             return data
 
-    def me_with_http_info(self, **kwargs):  # noqa: E501
+    def getUser_with_http_info(self, user_id, **kwargs):  # noqa: E501
         """  # noqa: E501
 
         The User Profile endpoint returns information about the Instagram user that has authorized with the application.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
-        >>> thread = api.me_with_http_info(async_req=True)
+        >>> thread = api.getUser_with_http_info(user_id, async_req=True)
         >>> result = thread.get()
 
         :param async_req bool
+        :param integer user_id: the user id (or the logged_in_user.pk in login() response)
+ (required)
         :return: object
                  If the method is called asynchronously,
                  returns the request thread.
@@ -73,7 +77,7 @@ class UserApi(object):
 
         local_var_params = locals()
 
-        all_params = []  # noqa: E501
+        all_params = ['user_id']  # noqa: E501
         all_params.append('async_req')
         all_params.append('_return_http_data_only')
         all_params.append('_preload_content')
@@ -83,14 +87,20 @@ class UserApi(object):
             if key not in all_params:
                 raise ApiTypeError(
                     "Got an unexpected keyword argument '%s'"
-                    " to method me" % key
+                    " to method getUser" % key
                 )
             local_var_params[key] = val
         del local_var_params['kwargs']
+        # verify the required parameter 'user_id' is set
+        if ('user_id' not in local_var_params or
+                local_var_params['user_id'] is None):
+            raise ApiValueError("Missing the required parameter `user_id` when calling `getUser`")  # noqa: E501
 
         collection_formats = {}
 
         path_params = {}
+        if 'user_id' in local_var_params:
+            path_params['user_id'] = local_var_params['user_id']  # noqa: E501
 
         query_params = []
 
@@ -112,7 +122,7 @@ class UserApi(object):
         auth_settings = []  # noqa: E501
 
         return self.api_client.call_api(
-            '/users/self/', 'GET',
+            '/users/{user_id}/info/', 'GET',
             path_params,
             query_params,
             header_params,

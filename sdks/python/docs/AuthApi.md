@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**login**](AuthApi.md#login) | **POST** /accounts/login/ | Login user to Instagram
 
 # **login**
-> object login(User-Agent, body)
+> object login(body)
 
 Login user to Instagram
 
@@ -20,8 +20,6 @@ Login to Instagram with username/password
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **User-Agent** | **string**| the User-Agent used by the Instagram App (be carefull in generation of a new one)
- | 
  **body** | [**object**](object.md)| Optional description in *Markdown* | 
 
 ### Return type

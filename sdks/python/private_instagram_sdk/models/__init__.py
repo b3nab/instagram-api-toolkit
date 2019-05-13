@@ -13,7 +13,7 @@
 from __future__ import absolute_import
 
 # import models into model package
-from User.clsUser import User
-from Error.clsError import Error
-from JsonObject.clsJsonObject import JsonObject
-from AuthBody.clsAuthBody import AuthBody
+from private_instagram_sdk.models.User import User
+from private_instagram_sdk.models.Error import Error
+from private_instagram_sdk.models.JsonObject import JsonObject
+from private_instagram_sdk.models.AuthBody import AuthBody

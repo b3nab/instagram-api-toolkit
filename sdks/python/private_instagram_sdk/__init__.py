@@ -26,8 +26,8 @@ from private_instagram_sdk.exceptions import ApiTypeError
 from private_instagram_sdk.exceptions import ApiValueError
 from private_instagram_sdk.exceptions import ApiKeyError
 from private_instagram_sdk.exceptions import ApiException
-# import models into sdk package
-from User.clsUser import User
-from Error.clsError import Error
-from JsonObject.clsJsonObject import JsonObject
-from AuthBody.clsAuthBody import AuthBody
+# import models into model package
+from private_instagram_sdk.models.User import User
+from private_instagram_sdk.models.Error import Error
+from private_instagram_sdk.models.JsonObject import JsonObject
+from private_instagram_sdk.models.AuthBody import AuthBody
