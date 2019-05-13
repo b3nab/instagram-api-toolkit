@@ -7,6 +7,7 @@ import uuid as uuid_library
 import six.moves.urllib as urllib
 import private_instagram_sdk
 from private_instagram_sdk.rest import ApiException
+from private_instagram_sdk.api_client import ApiClient
 from pprint import pprint
 
 USERNAME, PASSWORD = 'username', 'password'
@@ -55,15 +56,59 @@ USER_AGENT_BASE = (
 
 user_agent = USER_AGENT_BASE.format(**DEVICE)  # just insert params
 
-# create an instance of the API class
-api_instance = private_instagram_sdk.AuthApi(private_instagram_sdk.ApiClient())
-# user_agent = 'user_agent_example'  # str | the User-Agent used by the Instagram App (be carefull in generation of a new one) 
+# create an instance of the API class and add User-Agent
+api_client = private_instagram_sdk.ApiClient()
+api_client.user_agent = user_agent
+
+ig_auth = private_instagram_sdk.AuthApi(api_client)
+ig_users = private_instagram_sdk.UserApi(api_client)
+
 ig_sig_key_version = 4  # int |  (optional)
 signed_body = hmac.new(IG_SIG_KEY.encode('utf-8'), data.encode('utf-8'), hashlib.sha256).hexdigest() + '.' + urllib.parse.quote(data)  # str |  (optional)
 
+print('user-agent:\n', user_agent)
+body = 'ig_sig_key_version=4&signed_body={body}'.format(body=signed_body)
+print('body:\n', body)
+
 try:
     # Login user to Instagram
-    api_response = api_instance.accounts_login_post(user_agent, ig_sig_key_version=ig_sig_key_version, signed_body=signed_body)
-    pprint(api_response)
-except ApiException as e:
-    print("Exception when calling AuthApi->accounts_login_post: %s\n" % e)
+    api_response = ig_auth.login(body)
+    r = api_response
+    # pprint(api_response)
+    # print('Request sent from session is: ', r.request)
+    # print('url: ', r.request.url)
+    # # print('headers: ', r.request.headers)
+    # print('body: ', r.request.body)
+
+    # print('Response from session is: ', r)
+    # print('url: ', r.url)
+    # print('status_code: ', r.status_code)
+    # # print('headers: ', r.headers)
+    # print('text: ', r.text)
+    # # print('cookies: ', r.cookies)
+
+    logged_in_user = r.json()
+    print(type(logged_in_user))
+    print(logged_in_user)
+    # if logged_in_user['logged_in_user']:
+    #     print('logged_in_user!')
+    # if logged_in_user['logged_in_user']['pk']:
+    #     print('WE HAVE PK for current User!')
+    me_id = logged_in_user['logged_in_user']['pk']
+    print('me_id: {}'.format(me_id))
+    # get me (current logged in user)
+    me = ig_users.getUser(me_id)
+    # print('Request sent from session is: ', me.request)
+    # print('url: ', me.request.url)
+    # print('headers: ', me.request.headers)
+    # print('body: ', me.request.body)
+
+    print('Response from session is: ', r)
+    print('url: ', me.url)
+    print('status_code: ', me.status_code)
+    print('headers: ', me.headers)
+    print('text: ', me.text)
+    print('cookies: ', me.cookies)
+    
+except Exception as e:
+        print("Exception bad thing: %s\n" % e)
