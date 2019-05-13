@@ -8,6 +8,7 @@
 
 /accounts/login/:
   post:
+    operationId: 'login'
     tags: 
     - Auth
     summary: Login user to Instagram
@@ -49,6 +50,7 @@
 
 /users/self/:
   get:
+    operationId: 'me'
     tags:
     - User
     summary: User Profile

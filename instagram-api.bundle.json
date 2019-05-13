@@ -12,8 +12,9 @@
     }
   ],
   "paths": {
-    "/accounts/login": {
+    "/accounts/login/": {
       "post": {
+        "operationId": "login",
         "tags": [
           "Auth"
         ],
@@ -62,7 +63,13 @@
                 "schema": {
                   "type": "object",
                   "properties": {
-                    "username": {
+                    "message": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    },
+                    "error_type": {
                       "type": "string"
                     }
                   }
@@ -115,8 +122,9 @@
         }
       }
     },
-    "/users/self": {
+    "/users/self/": {
       "get": {
+        "operationId": "me",
         "tags": [
           "User"
         ],
@@ -181,6 +189,20 @@
         }
       },
       "Error": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "error_type": {
+            "type": "string"
+          }
+        }
+      },
+      "JsonObject": {
         "type": "object",
         "properties": {
           "message": {
@@ -294,6 +316,70 @@
       "ig-app-id": {
         "in": "header",
         "name": "X-IG-App-ID",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "ds_user": {
+        "in": "cookie",
+        "name": "ds_user",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "ds_user_id": {
+        "in": "cookie",
+        "name": "ds_user_id",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "shbts": {
+        "in": "cookie",
+        "name": "shbts",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "mid": {
+        "in": "cookie",
+        "name": "mid",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "sessionid": {
+        "in": "cookie",
+        "name": "sessionid",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "csrftoken": {
+        "in": "cookie",
+        "name": "csrftoken",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "shbid": {
+        "in": "cookie",
+        "name": "shbid",
+        "schema": {
+          "type": "string"
+        },
+        "required": true
+      },
+      "rur": {
+        "in": "cookie",
+        "name": "rur",
         "schema": {
           "type": "string"
         },

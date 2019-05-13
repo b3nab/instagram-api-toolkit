@@ -14,10 +14,15 @@ const wizardChoosing = async () => {
     name: 'wizard_selection',
     message: 'What you want to do?',
     initial: 0,
-    choices: ['codegen', 'new_codegen_config', 'generate', 'new_config', 'new_generator', 'new_template', 'exit']
+    choices: ['schema', 'codegen', 'new_codegen_config', 'generate', 'new_config', 'new_generator', 'new_template', 'exit']
   })
   // console.log(response)
   return response.wizard_selection
+}
+
+const schema = async () => {
+  const build_schema = run_cmd('yarn validate')
+  console.log(build_schema)
 }
 
 const codegen = async () => {
@@ -354,6 +359,9 @@ const wizard = async () => {
   console.log('Choise is', chalk.magentaBright(wizard_choice))
   while(wizard_choice !== 'exit') {
     switch (wizard_choice) {
+      case 'schema':
+        await schema()
+        break
       case 'codegen':
         await codegen()
         break
