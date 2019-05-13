@@ -7,6 +7,14 @@
 #-----------------
 # Path params
 #-----------------
+user-id:
+  in: path
+  name: user_id
+  schema:
+    type: integer
+  required: true
+  description: >
+    the user id (or the logged_in_user.pk in login() response)
 
 #-----------------
 # Query params

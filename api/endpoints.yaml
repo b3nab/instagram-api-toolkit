@@ -4,6 +4,42 @@
 # Documentation link
 # https://swagger.io/docs/specification/paths-and-operations/
 
+# DEMO Endpoints, for example
+# /path/to/:
+#   post:
+#     operationId: 'funcName'
+#     tags: 
+      # it will be used to define a class, so you can call this endpoint like this >> ClassApi.funcName()
+#     - Class
+#     summary: summary description
+#     description: Complete description of this endpoint and its capabilities
+#     parameters:
+#       - $ref: './parameters.yaml#/ua'
+#     requestBody:
+#       $ref: './body.yaml#/authData'
+#     security:
+#       - cookieAuth: []
+#     responses:
+#       200:
+#         description: Successfully login the user
+#         content:
+#           application/json:
+#             schema:
+#               $ref: './schemas.yaml#/schemas/JsonObject'
+#       400:
+#         description: Missing parameters
+#         content:
+#           application/json:
+#             schema:
+#               $ref: './schemas.yaml#/schemas/Error'
+#       default:
+#         description: Unexpected error
+#         content:
+#           application/json:
+#             schema:
+#               $ref: './schemas.yaml#/schemas/Error'
+
+
 # ACCOUNTS endpoints
 
 /accounts/login/:
@@ -13,8 +49,6 @@
     - Auth
     summary: Login user to Instagram
     description: Login to Instagram with username/password
-    parameters:
-      - $ref: './parameters.yaml#/ua'
     requestBody:
       $ref: './body.yaml#/authData'
     security:
@@ -48,14 +82,16 @@
 
 # USERS endpoints
 
-/users/self/:
+/users/{user_id}/info/:
   get:
-    operationId: 'me'
+    operationId: 'getUser'
     tags:
     - User
     summary: User Profile
     description: The User Profile endpoint returns information about the Instagram user
       that has authorized with the application.
+    parameters:
+      - $ref: './parameters.yaml#/user-id'
     responses:
       200:
         description: Profile information for a user

@@ -20,17 +20,6 @@
         ],
         "summary": "Login user to Instagram",
         "description": "Login to Instagram with username/password",
-        "parameters": [
-          {
-            "in": "header",
-            "name": "User-Agent",
-            "schema": {
-              "type": "string"
-            },
-            "required": true,
-            "description": "the User-Agent used by the Instagram App (be carefull in generation of a new one)\n"
-          }
-        ],
         "requestBody": {
           "description": "Optional description in *Markdown*",
           "required": true,
@@ -122,14 +111,25 @@
         }
       }
     },
-    "/users/self/": {
+    "/users/{user_id}/info/": {
       "get": {
-        "operationId": "me",
+        "operationId": "getUser",
         "tags": [
           "User"
         ],
         "summary": "User Profile",
         "description": "The User Profile endpoint returns information about the Instagram user that has authorized with the application.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "schema": {
+              "type": "integer"
+            },
+            "required": true,
+            "description": "the user id (or the logged_in_user.pk in login() response)\n"
+          }
+        ],
         "responses": {
           "200": {
             "description": "Profile information for a user",
@@ -229,6 +229,15 @@
       }
     },
     "parameters": {
+      "user-id": {
+        "in": "path",
+        "name": "user_id",
+        "schema": {
+          "type": "integer"
+        },
+        "required": true,
+        "description": "the user id (or the logged_in_user.pk in login() response)\n"
+      },
       "username": {
         "in": "query",
         "name": "username",
