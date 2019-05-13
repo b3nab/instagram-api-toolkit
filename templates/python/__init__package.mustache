@@ -19,6 +19,6 @@ from {{packageName}}.exceptions import ApiTypeError
 from {{packageName}}.exceptions import ApiValueError
 from {{packageName}}.exceptions import ApiKeyError
 from {{packageName}}.exceptions import ApiException
-# import models into sdk package
-{{#models}}{{#model}}from {{modelPackage}}.{{classFilename}} import {{classname}}
+# import models into model package
+{{#models}}{{#model}}from {{packageName}}.models.{{classVarName}} import {{classname}}
 {{/model}}{{/models}}

@@ -6,5 +6,5 @@
 from __future__ import absolute_import
 
 # import models into model package
-{{#models}}{{#model}}from {{modelPackage}}.{{classFilename}} import {{classname}}{{/model}}
-{{/models}}
+{{#models}}{{#model}}from {{packageName}}.models.{{classVarName}} import {{classname}}
+{{/model}}{{/models}}

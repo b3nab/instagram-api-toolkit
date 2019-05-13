@@ -49,6 +49,9 @@ class RESTClientObject(object):
         # maxsize is the number of requests to host that are allowed in parallel  # noqa: E501
         # Custom SSL certificates and client certificates: http://urllib3.readthedocs.io/en/latest/advanced-usage.html  # noqa: E501
 
+        # Session requests manager
+        self.session = requests.Session()
+
         # cert_reqs
         if configuration.verify_ssl:
             cert_reqs = ssl.CERT_REQUIRED
@@ -75,8 +78,6 @@ class RESTClientObject(object):
             else:
                 maxsize = 4
 
-        # Session requests manager
-        self.session = requests.Session()
 
     def request(self, method, url, query_params=None, headers=None,
                 body=None, post_params=None, _preload_content=True,
@@ -123,9 +124,13 @@ class RESTClientObject(object):
         if 'Content-Type' not in headers:
             headers['Content-Type'] = 'application/json'
 
-        try:
+        data = ''
+        if post_params:
             data = '&'.join([ '='.join(str(el) for el in par) for par in post_params])
-
+        if body:
+            data = body
+        
+        try:
             # print('####')
             # print('Build the session request with:')
             # print('method: ', method)
